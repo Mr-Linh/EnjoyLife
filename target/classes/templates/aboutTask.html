@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>委托相关</title>
+    <script src="/js/echarts.js" charset="UTF-8"></script>
+</head>
+<body>
+<div id="taskTotal">
+    <h3>平台委托发布比例图</h3>
+    <div id="taskTotalChart" style="width: 80%;height: 500px"></div>
+</div>
+
+<div id="taskState">
+    <h3>委托类别比例图</h3>
+<div id="taskStateChart" style="width: 80%;height:500px;"></div>
+</div>
+
+<script type="text/javascript">
+    var dom = document.getElementById("taskTotalChart");
+    var myChart = echarts.init(dom);
+    var app = {};
+    option = null;
+
+    option = {
+        xAxis: {
+            type: 'category',
+            boundaryGap: false
+        },
+        yAxis: {
+            type: 'value',
+            boundaryGap: [0, '30%']
+        },
+        visualMap: {
+            type: 'piecewise',
+            show: false,
+            dimension: 0,
+            seriesIndex: 0
+        },
+        series: [
+            {
+                type: 'line',
+                smooth: 0.6,
+                symbol: 'none',
+                lineStyle: {
+                    color: 'rgba(255, 102, 0, 0.94)',
+                    width: 3
+                },
+                markLine: {
+                    symbol: ['none', 'none'],
+                    label: {show: false},
+                    data: [
+                        {xAxis: 1},
+                        {xAxis: 2},
+                        {xAxis: 3},
+                        {xAxis: 4},
+                        {xAxis: 5},
+                        {xAxis: 6},
+                        {xAxis: 7},
+                        {xAxis: 8},
+                        {xAxis: 9},
+                        {xAxis: 10},
+                        {xAxis: 11},
+                        {xAxis: 12},
+                    ]
+                },
+                areaStyle: {},
+                data: [
+                    ['2020-01', 200],
+                    ['2020-02', 400],
+                    ['2020-03', 650],
+                    ['2020-04', 500],
+                    ['2020-05', 250],
+                    ['2020-06', 300],
+                    ['2020-07', 450],
+                    ['2020-08', 300],
+                    ['2020-09', 100],
+                    ['2020-10', 300],
+                    ['2020-11', 200],
+                    ['2020-12', 160]
+                ]
+            }
+        ]
+    };
+    ;
+    if (option && typeof option === "object") {
+        myChart.setOption(option, true);
+    }
+</script>
+
+<script type="text/javascript">
+    var dom = document.getElementById("taskStateChart");
+    var myChart = echarts.init(dom);
+    var app = {};
+    option = null;
+
+    setTimeout(function () {
+
+        option = {
+            legend: {},
+            tooltip: {
+                trigger: 'axis',
+                showContent: false
+            },
+            dataset: {
+                source: [
+                    ['product', '2012', '2013', '2014', '2015', '2016', '2017'],
+                    ['Matcha Latte', 41.1, 30.4, 65.1, 53.3, 83.8, 98.7],
+                    ['Milk Tea', 86.5, 92.1, 85.7, 83.1, 73.4, 55.1],
+                    ['Cheese Cocoa', 24.1, 67.2, 79.5, 86.4, 65.2, 82.5],
+                    ['Walnut Brownie', 55.2, 67.1, 69.2, 72.4, 53.9, 39.1]
+                ]
+            },
+            xAxis: {type: 'category'},
+            yAxis: {gridIndex: 0},
+            grid: {top: '55%'},
+            series: [
+                {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+                {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+                {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+                {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+                {
+                    type: 'pie',
+                    id: 'pie',
+                    radius: '30%',
+                    center: ['50%', '25%'],
+                    label: {
+                        formatter: '{b}: {@2012} ({d}%)'
+                    },
+                    encode: {
+                        itemName: 'product',
+                        value: '2012',
+                        tooltip: '2012'
+                    }
+                }
+            ]
+        };
+
+        myChart.on('updateAxisPointer', function (event) {
+            var xAxisInfo = event.axesInfo[0];
+            if (xAxisInfo) {
+                var dimension = xAxisInfo.value + 1;
+                myChart.setOption({
+                    series: {
+                        id: 'pie',
+                        label: {
+                            formatter: '{b}: {@[' + dimension + ']} ({d}%)'
+                        },
+                        encode: {
+                            value: dimension,
+                            tooltip: dimension
+                        }
+                    }
+                });
+            }
+        });
+
+        myChart.setOption(option);
+
+    });
+    if (option && typeof option === "object") {
+        myChart.setOption(option, true);
+    }
+</script>
+
+</body>
+</html>

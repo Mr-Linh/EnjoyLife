@@ -2,9 +2,137 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>发布委托</title>
+    <!--layui-->
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+    <script src="/layui/layui.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="/css/publishTask.css">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/publishTask.js"></script>
+
 </head>
 <body>
-<h1>I</h1>
+<div class="container">
+    <div class="text-center">
+        <div class="page-header" style="text-align: center;margin-top: 15px ">
+            <h1>填写委托信息</h1>
+        </div>
+        <div class="content" style="display: flex">
+            <form class="layui-form" action="">
+                <div class="layui-card-header"></div>
+                <div class="layui-card-body">
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">委托类型</label>
+                            <div class="layui-input-inline">
+                                <select id="category1" lay-filter="category1" lay-verify="required">
+                                    <option value="">请选择分类</option>
+                                    <option value="1">生活</option>
+                                    <option value="2">学习</option>
+                                    <option value="3">娱乐</option>
+                                    <option value="4">紧急</option>
+                                </select>
+                            </div>
+                            <div class="layui-input-inline">
+                                <select id="category2" lay-filter="category2" lay-verify="required">
+                                    <option value="">请选择分类</option>
+                                    <option value="家政">家政</option>
+                                    <option value="代领">代领</option>
+                                    <option value="代送">代送</option>
+                                    <option value="其他">其他</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label">截止时间</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" class="layui-input" id="test1" placeholder="yyyy-MM-dd">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label">预计薪酬</label>
+                                <div class="layui-input-inline">
+                                    <input type="tel" name="phone" lay-verify="required|money" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">主题</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="title" lay-verify="title" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item layui-form-text">
+                            <label class="layui-form-label">详细内容</label>
+                            <div class="layui-input-block">
+                                <textarea placeholder="请详细说明委托内容" class="layui-textarea" name="desc"></textarea>
+                            </div>
+                        </div>
+                        <div class="layui-form-item layui-form-text">
+                            <label class="layui-form-label">特殊要求</label>
+                            <div class="layui-input-block">
+                                <textarea placeholder="如有特殊要求，请说明" class="layui-textarea" name="desc"></textarea>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+                                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+<script>
+    layui.use(['form', 'layedit', 'laydate'], function () {
+        var form = layui.form
+            , layer = layui.layer
+            , laydate = layui.laydate;
+
+        //常规用法
+        laydate.render({
+            elem: '#test1'
+        });
+        //自定义验证
+        form.verify({
+            title: function(value){
+                if(value.length < 3){
+                    return '主题至少3个字符';
+                }
+            }
+            , money:[
+                /^\+?[1-9]\d*$/
+                ,'金额必须为大于0的正整数'
+            ]
+        });
+
+        //监听提交
+        form.on('submit(demo1)', function (data) {
+            if (layui.$("input[name=identityNumber]").checked()) {
+                layer.alert(JSON.stringify(data.field), {
+                    title: '最终的提交信息'
+                })
+            }
+            return false;
+        });
+
+        //表单取值
+        layui.$('#LAY-component-form-getval').on('click', function () {
+            var data = form.val('example');
+            alert(JSON.stringify(data));
+        });
+
+    });
+</script>
 </body>
 </html>

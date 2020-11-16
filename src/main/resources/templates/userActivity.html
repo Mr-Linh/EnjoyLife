@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>用户活跃度</title>
 <!--    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>-->
-    <script src="../static/js/echarts.js" charset="UTF-8"></script>
+    <script src="/js/echarts.js" charset="UTF-8"></script>
 </head>
 <body>
 
@@ -100,7 +100,6 @@
             }
         ]
     };
-    ;
     if (option && typeof option === "object") {
         myChart.setOption(option, true);
     }
@@ -208,7 +207,7 @@
             startValue: dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)],
             endValue: dataAxis[Math.min(params.dataIndex + zoomSize / 2, data.length - 1)]
         });
-    });;
+    });
     if (option && typeof option === "object") {
         myChart.setOption(option, true);
     }

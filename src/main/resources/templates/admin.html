@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>EnjoyLife后台管理系统</title>
-    <link rel="stylesheet" href="../static/layui/css/layui.css">
-    <link rel="stylesheet" href="../static/css/admin.css">
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <link rel="stylesheet" href="/css/admin.css">
 </head>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
@@ -47,14 +47,14 @@
                 <li class="layui-nav-item layui-nav-itemed">
                     <a class="" href="javascript:;">数据分析</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="userActivity.html" target="iframeMain">用户活跃度</a></dd>
-                        <dd><a href="aboutTask.html" target="iframeMain">委托相关</a></dd>
+                        <dd><a href="userActivity" target="iframeMain">用户活跃度</a></dd>
+                        <dd><a href="aboutTask" target="iframeMain">委托相关</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
                     <a href="javascript:;">委托管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">生活</a></dd>
+                        <dd><a href="lifeTask" target="iframeMain">生活</a></dd>
                         <dd><a href="javascript:;">学习</a></dd>
                         <dd><a href="javascript:;">娱乐</a></dd>
                         <dd><a href="javascript:;">紧急</a></dd>
@@ -69,8 +69,8 @@
     <div class="layui-body">
         <!-- 内容主体区域 -->
         <div style="padding: 15px;height: 1500px">
-            <iframe id="iframeMain" src="" class="embed-responsive-item" frameborder="0" name="iframeMain">
-                <h1>欢迎来到EnjoyLife后台管理系统</h1>
+            <iframe id="iframeMain" src="initAdmin" class="embed-responsive-item" frameborder="0" name="iframeMain">
+
             </iframe>
         </div>
     </div>
@@ -80,7 +80,7 @@
 <!--        © layui.com - 底部固定区域-->
 <!--    </div>-->
 </div>
-<script src="../static/layui/layui.js"></script>
+<script src="/layui/layui.js"></script>
 <script>
     //JavaScript代码区域
     layui.use('element', function(){

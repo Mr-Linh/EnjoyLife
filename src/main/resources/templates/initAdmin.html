@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>后台管理初始</title>
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+    <script src="/layui/layui.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="/css/initAdmin.css">
+</head>
+<body>
+<div style="padding: 20px; background-color: #F2F2F2;">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md3">
+            <div class="layui-card">
+                <div class="layui-card-header">访问量</div>
+                <div class="layui-card-body">
+                    <span id="pageView" th:text="${pageview.count}"></span>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md3">
+            <div class="layui-card">
+                <div class="layui-card-header">活跃用户</div>
+                <div class="layui-card-body">
+                    <span id="activeUser">666</span>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header">用户留言</div>
+                <div class="layui-card-body">
+                    <h3>user1</h3>
+                    <div class="message">11111</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    layui.use(['layedit'], function () {
+        var form = layui.form
+            , layedit = layui.layedit;
+
+    });
+</script>
+</body>
+</html>
