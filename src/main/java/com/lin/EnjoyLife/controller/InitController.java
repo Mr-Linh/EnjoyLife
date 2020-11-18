@@ -10,15 +10,28 @@ public class InitController {
         return "login";
     }
 
+    @GetMapping("/register")
+    public String register(){
+        return "register";
+    }
+
     @GetMapping("/index")
     public String Index(){
         return "index";
     }
-    @GetMapping("/admin")
-    public String admin(){
-        return "admin";
+    @GetMapping("/findPassword")
+    public String findPassword(){
+        return "findPassword";
     }
+//    @GetMapping("/admin")
+//    public String admin(){
+//        return "admin";
+//    }
 
+    @GetMapping("/adminLogin")
+    public String adminLogin(){
+        return "adminLogin";
+    }
 
     @GetMapping("/userActivity")
     public String userActivity(){
@@ -33,11 +46,6 @@ public class InitController {
     @GetMapping("/lifeTask")
     public String lifeTask(){
         return "lifeTask";
-    }
-
-    @GetMapping("/register")
-    public String register(){
-        return "register";
     }
 
     @GetMapping("/publishTask")

@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>EnjoyLife后台管理系统</title>
     <link rel="stylesheet" href="/layui/css/layui.css">
     <link rel="stylesheet" href="/css/admin.css">
@@ -29,14 +28,14 @@
             <li class="layui-nav-item">
                 <a href="javascript:;">
                     <img src=".." class="layui-nav-img">
-                    用户昵称
+                    <span th:text="${managerId}"></span>
                 </a>
                 <dl class="layui-nav-child">
-                    <dd><a href="">基本资料</a></dd>
-                    <dd><a href="">安全设置</a></dd>
+                    <dd><a href="javascript:;">基本资料</a></dd>
+                    <dd><a href="javascript:;">安全设置</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="">登出</a></li>
+            <li class="layui-nav-item"><a href="/managerLogout">登出</a></li>
         </ul>
     </div>
 
@@ -44,6 +43,7 @@
         <div class="layui-side-scroll">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+                <li class="layui-nav-item"><a href="/initAdmin" target="iframeMain">后台首页</a></li>
                 <li class="layui-nav-item layui-nav-itemed">
                     <a class="" href="javascript:;">数据分析</a>
                     <dl class="layui-nav-child">
@@ -60,8 +60,8 @@
                         <dd><a href="javascript:;">紧急</a></dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item"><a href="">账号审核</a></li>
-                <li class="layui-nav-item"><a href="">查看帮助</a></li>
+                <li class="layui-nav-item"><a href="javascript:;">账号审核</a></li>
+                <li class="layui-nav-item"><a href="javascript:;">查看帮助</a></li>
             </ul>
         </div>
     </div>

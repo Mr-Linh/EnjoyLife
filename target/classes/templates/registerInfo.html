@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table th:each="i:${user}">
+
+    <tr >
+        <td>Id</td>
+        <td th:text="${i.getUserId()}"></td>
+    </tr>
+
+    <tr >
+        <td>真实姓名</td>
+        <td th:text="${i.getUserName()}"></td>
+
+    </tr>
+    <tr >
+        <td th:text="${i.getRegisterTime()}"></td>
+    </tr>
+
+    <tr >
+        <td th:text="${i.getRealName()}"></td>
+    </tr>
+    <tr >
+        <td th:text="${i.getSex()}"></td>
+    </tr>
+    <tr >
+        <td th:text="${i.getAge()}"></td>
+    </tr>
+    <tr >
+        <td th:text="${i.getIdentityNumber()}"></td>
+    </tr>
+    <tr >
+        <td th:text="${i.getTel()}"></td>
+    </tr>
+    <tr >
+        <td th:text="${i.getEmail()}"></td>
+    </tr>
+    <tr >
+        <td th:text="${i.getAddress()}"></td>
+    </tr>
+    <tr >
+        <td th:text="${i.getEducation()}"></td>
+    </tr>
+
+    <tr >
+        <td th:text="${i.getQuestion()}"></td>
+    </tr>
+    <tr >
+        <td th:text="${i.getAnswer()}"></td>
+    </tr>
+    <tr >
+        <td th:text="${i.getUState()}"></td>
+    </tr>
+    <tr >
+        <td th:text="${i.getULevel()}"></td>
+    </tr>
+
+
+
+</table>
+</div>
+</body>
+</html>

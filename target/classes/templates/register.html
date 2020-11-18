@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>欢迎注册EnjoyLife</title>
@@ -18,8 +18,9 @@
         <div class="page-header" style="text-align: center">
             <h1>用户注册 <small>请填写真实的个人信息</small></h1>
         </div>
+        <input id="msg" type="hidden" th:value="${msg}" />
         <div class="content" style="display: flex">
-            <form class="layui-form" action="">
+            <form class="layui-form" action="/registerFinish" method="post">
                 <div class="layui-card-header">账号信息</div>
                 <div class="layui-card-body">
                     <div class="layui-form-item">
@@ -55,7 +56,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">真实姓名</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="realName" lay-verify="required|realName" lay-reqtext="请输入真实姓名"
+                            <input type="text" name="realname" lay-verify="required|realName" lay-reqtext="请输入真实姓名"
                                    placeholder="2-4位汉字"
                                    autocomplete="off" class="layui-input">
                         </div>
@@ -102,19 +103,19 @@
                         <div class="layui-input-inline">
                             <select name="education" lay-filter="study">
                                 <option value="" selected=""></option>
-                                <option value="0">小学</option>
-                                <option value="1">初中</option>
-                                <option value="2">中专</option>
-                                <option value="3">高中</option>
-                                <option value="4">大专</option>
-                                <option value="5">本科及以上</option>
+                                <option value="小学">小学</option>
+                                <option value="初中">初中</option>
+                                <option value="中专">中专</option>
+                                <option value="高中">高中</option>
+                                <option value="大专">大专</option>
+                                <option value="本科及以上">本科及以上</option>
                             </select>
                         </div>
                     </div>
                     <div class="layui-form-item">
                         <label class="layui-form-label">当前职业</label>
                         <div class="layui-input-block">
-                            <input type="text" name="realName" lay-verify="required" lay-reqtext="请输入当前职业"
+                            <input type="text" name="profession" lay-verify="required" lay-reqtext="请输入当前职业"
                                    autocomplete="off" class="layui-input">
                         </div>
                     </div>
@@ -138,7 +139,7 @@
                     <div class="layui-form-item layui-form-text">
                         <label class="layui-form-label">填写回答</label>
                         <div class="layui-input-block">
-                            <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+                            <textarea  name="answer" placeholder="请输入内容" class="layui-textarea"></textarea>
                         </div>
                     </div>
                     <div class="layui-form-item">
@@ -153,6 +154,7 @@
                             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                         </div>
                     </div>
+                    <p><label>已有账号？<a href="/login" id="findPassLink">点击登录</a></label></p>
                 </div>
             </form>
 
@@ -177,6 +179,9 @@
         laydate.render({
             elem: '#date1'
         });
+        if(layui.$("#msg").val()!==""){
+            layer.alert(layui.$("#msg").val());
+        }
 
         //自定义验证规则
         form.verify({
@@ -213,20 +218,18 @@
         //监听提交
         form.on('submit(demo1)', function (data) {
             if (layui.$("input[name=identityNumber]").checked()) {
-                layer.alert(JSON.stringify(data.field), {
-                    title: '最终的提交信息'
-                })
+                // layer.alert(JSON.stringify("感谢使用EnjoyLife!"), {
+                //     title: data.username
+                // })
             }
             return false;
         });
 
-        //表单取值
-        layui.$('#LAY-component-form-getval').on('click', function () {
-            var data = form.val('example');
-            alert(JSON.stringify(data));
-        });
-
     });
+</script>
+<script>
+
+
 </script>
 
 </body>

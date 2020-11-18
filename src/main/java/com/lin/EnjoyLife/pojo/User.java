@@ -1,11 +1,16 @@
 package com.lin.EnjoyLife.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.sql.Date;
 
 public class User {
     private String UserId;
     private String Password;
     private String UserName;
+//    @DateTimeFormat(pattern = "yyyy-MM-dd")
+//    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date RegisterTime;
     private String RealName;
     private String Sex;

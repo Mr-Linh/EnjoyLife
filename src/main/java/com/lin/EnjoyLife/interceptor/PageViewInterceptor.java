@@ -1,7 +1,6 @@
 package com.lin.EnjoyLife.interceptor;
 
 import com.lin.EnjoyLife.pojo.User;
-import com.lin.EnjoyLife.service.IPageViewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;

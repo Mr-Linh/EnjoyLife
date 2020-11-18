@@ -114,6 +114,18 @@ i{
     margin-top: 28px;
     cursor: pointer;
 }
+.errorLabel{
+    width: 400px;
+    height: 30px;
+    font-size: 13px;
+    float: left;
+    margin-left: 55px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+#error-label1,#error-label2{
+    color: red;
+}
 .usernameWrapDiv{
     width: 400px;
     height: 70px;
