@@ -3,8 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <title>用户账号审核</title>
+    <!--layui-->
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+    <script src="/layui/layui.js" charset="utf-8"></script>
 </head>
 <body>
+<!--<table class="layui-hide" id="test"></table>-->
+<table class="layui-table" lay-data="{height: 'full-200', cellMinWidth: 80, page: true, limit:30, url:'/accountCheckFun'}">
+    <thead>
+    <tr>
+        <th lay-data="{field:'address', width:100, sort: true}">地址</th>
+        <th lay-data="{field:'sex', width:100}">性别</th>
+        <th lay-data="{field:'userName', width:100, sort: true}">用户名</th>
+    </tr>
+    </thead>
+</table>
 
+<script>
+    layui.use('table', function(){
+        var table = layui.table;
+
+        table.render({
+            elem: '#test'
+            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            ,url: '/accountCheckFun'
+            ,cols: [
+                [
+                    ,{field:'address', width:80, title: '地址'}
+                    ,{field:'sex', width:80, title: '地址'}
+                    ,{field:'userName', width:80, title: '地址'}
+                ]
+            ]
+            // ,data: [{
+            //
+            //     "id": "10001"
+            //
+            //     ,"username":  "杜甫"
+            //
+            //     ,"email": "xianxin@layui.com"
+            //
+            //     ,"sex": "男"
+            //
+            //     ,"city": "浙江杭州"
+            //
+            //     ,"sign": "人生恰似一场修行"
+            //
+            //     ,"experience":  "116"
+            //
+            // }
+            // ]
+        });
+    });
+</script>
 </body>
 </html>

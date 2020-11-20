@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+    <!--layui-->
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+    <script src="/layui/layui.js" charset="utf-8"></script>
+
+    <!--bootstrap-->
+    <link rel="stylesheet" href="/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script src="/bootstrap-3.3.7-dist/js/jquery-1.11.1.min.js"></script>
+    <script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/personalCenter.css">
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/index">EnjoyLife</a>
+                <a class="navbar-brand" href="#">个人中心</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav"></ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <div class="head_img_div"><img class="head_img" src="/img/icon/qq.png" alt="头像显示错误">
+                        </div>
+                    </li>
+                    <li class="dropdown">
+
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false" th:text="${userName}"><span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+<!--                            <li><a href="#">账户信息</a></li>-->
+<!--                            <li><a href="#">个人信息</a></li>-->
+<!--                            <li><a href="#">账户余额</a></li>-->
+<!--                            <li role="separator" class="divider"></li>-->
+                            <li><a href="#">退出登录</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <!--            </ul>-->
+                <!--            <ul class="nav navbar-nav navbar-right">-->
+                <!--                <li><a href="../navbar/">Default</a></li>-->
+                <!--                <li class="active"><a href="./">Static top <span class="sr-only">(current)</span></a></li>-->
+                <!--                <li><a href="../navbar-fixed-top/">Fixed top</a></li>-->
+                <!--            </ul>-->
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+    <div class="main-content">
+        <!-- 左侧边 -->
+        <div class="left-side">
+            <ul>
+                <li>
+                    <a href="/accountInfo" class="active">账户信息</a>
+                </li>
+                <li>
+                    <a href="/personalInfo">个人信息</a>
+                </li>
+                <li>
+                    <a href="/accountBalance">账户余额</a>
+                </li>
+            </ul>
+        </div>
+        <!-- 右边内容 -->
+        <div class="right-content">
+            <!--/*@thymesVar id="msg" type="java.lang.String"*/-->
+            <input id="msg" type="hidden" th:value="${msg}"/>
+            <div class="content" style="display: flex">
+                <form class="layui-form" action="/accountInfoChange" method="post">
+                    <div class="layui-card-header">账号信息</div>
+                    <div class="layui-card-body">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" style="width: 120px">用户id</label>
+                                <div class="layui-input-inline">
+                                    <label>
+                                        <input type="text" name="userId" disabled="disabled" class="layui-input" th:value="${userId}" />
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width: 120px">用户名</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="username" th:value="${userName}"
+                                       lay-verify="required" lay-reqtext="用户名是必填项，岂能为空？"
+                                       placeholder="请输入用户名"
+                                       autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width: 120px">注册时间</label>
+                            <div class="layui-input-inline">
+                                <!--/*@thymesVar id="registerTime" type="java.lang.String"*/-->
+                                <input type="text" name="registerTime" th:value="${registerTime}" disabled="disabled" class="layui-input" />
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width: 120px">账号等级</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="uLevel" th:value="${uLevel}" disabled="disabled" class="layui-input" />
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width: 120px">旧密码</label>
+                            <div class="layui-input-inline">
+                                <input type="password" name="oldPassword" lay-verify="required|pass" placeholder="请输入旧密码"
+                                       autocomplete="off"
+                                       class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">请填写6到12位密码</div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width: 120px">新密码</label>
+                            <div class="layui-input-inline">
+                                <input type="password" name="password" lay-verify="pass" placeholder="请输入新密码"
+                                       autocomplete="off"
+                                       class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">请填写6到12位密码</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width: 120px">确认密码</label>
+                            <div class="layui-input-inline">
+                                <input type="password" name="confirmPassword" lay-verify="confirmPass"
+                                       placeholder="请再次输入新密码" autocomplete="off"
+                                       class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">两次输入的密码必须一致</div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <input type="checkbox" id="realInfo" lay-verify="check" checked="checked" title="我已阅读">
+                                <a href="#" target="_blank"><b>《服务条款》</b></a>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1" id="submit">立即提交</button>
+                                <a href="/accountInfo" ><input type="button"
+                                                                class="layui-btn layui-btn-primary" value="重置"/></a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    layui.use(['form', 'layedit', 'laydate'], function () {
+        var form = layui.form
+            , layer = layui.layer
+            , laypage = layui.laypage;
+
+        if(layui.$("#msg").val()!==""){
+            layer.alert(layui.$("#msg").val());
+        }
+        //自定义样式
+        laypage.render({
+            elem: 'demo'
+            , count: 100
+            , theme: '#1E9FFF'
+        });
+
+        //自定义验证规则
+        form.verify({
+            title: function (value) {
+                if (value.length < 5) {
+                    return '标题至少得5个字符啊';
+                }
+            }
+            , pass: [
+                /^[\S]{6,12}$/
+                , '密码必须6到12位，且不能出现空格'
+            ]
+            , confirmPass: function (value) {
+                if (layui.$("input[name=password]").val() !== value)
+                    return '两次密码输入不一致！';
+            }
+        });
+
+
+        //监听提交
+        form.on('submit(demo1)', function (data) {
+            if (layui.$("input[name=identityNumber]").checked()) {
+                layer.alert(JSON.stringify(data.field), {
+                    title: '最终的提交信息'
+                })
+            }
+            return false;
+        });
+
+        //表单取值
+        layui.$('#LAY-component-form-getval').on('click', function () {
+            var data = form.val('example');
+            alert(JSON.stringify(data));
+        });
+
+    });
+</script>
+</body>
+</html>

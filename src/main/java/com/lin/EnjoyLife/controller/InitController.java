@@ -23,14 +23,19 @@ public class InitController {
     public String findPassword(){
         return "findPassword";
     }
-//    @GetMapping("/admin")
-//    public String admin(){
-//        return "admin";
-//    }
+    @GetMapping("/admin")
+    public String admin(){
+        return "admin";
+    }
 
     @GetMapping("/adminLogin")
     public String adminLogin(){
         return "adminLogin";
+    }
+
+    @GetMapping("/accountCheck")
+    public String accountCheck(){
+        return "accountCheck";
     }
 
     @GetMapping("/userActivity")
@@ -43,6 +48,7 @@ public class InitController {
         return "aboutTask";
     }
 
+
     @GetMapping("/lifeTask")
     public String lifeTask(){
         return "lifeTask";
@@ -52,4 +58,12 @@ public class InitController {
     public String publishTask(){
         return "publishTask";
     }
+
+    @GetMapping("/taskCenter")
+    public String taskCenter(){
+        return "taskCenter";
+    }
+
+
+
 }

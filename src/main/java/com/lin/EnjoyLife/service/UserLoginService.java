@@ -11,19 +11,21 @@ public class UserLoginService {
     @Autowired
     UserMapper userMapper;
 
-    public Boolean UserLogin(String UserId, String Password){
+    public String UserLogin(String UserId, String Password){
         User user =null;
         try {
             user = userMapper.queryUserById(UserId);
+            if (user.getUState()!=0)
+                return "账号审核中。。";
             if(user.getPassword().equals(Password)){
-                return true;
+                return "登录成功";
             }else{
-                return false;
+                return "用户id或密码错误";
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return false;
+        return "用户不存在！";
     }
 }

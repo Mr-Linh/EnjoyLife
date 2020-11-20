@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.List;
 
 @Service
-public class accountCheckService {
+public class AccountCheckService {
     @Autowired
     UserMapper userMapper;
 

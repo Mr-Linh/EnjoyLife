@@ -1,16 +1,11 @@
 package com.lin.EnjoyLife.pojo;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.sql.Date;
 
 public class User {
     private String UserId;
     private String Password;
     private String UserName;
-//    @DateTimeFormat(pattern = "yyyy-MM-dd")
-//    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date RegisterTime;
     private String RealName;
     private String Sex;
@@ -25,11 +20,12 @@ public class User {
     private String Answer;
     private Integer UState;
     private Integer ULevel;
+    private Integer Balance;
 
     public User() {
     }
 
-    public User(String userId, String password, String userName, Date registerTime, String realName, String sex, Integer age, String identityNumber, String tel, String email, String address, String education, String profession, String question, String answer, Integer UState, Integer ULevel) {
+    public User(String userId, String password, String userName, Date registerTime, String realName, String sex, Integer age, String identityNumber, String tel, String email, String address, String education, String profession, String question, String answer, Integer UState, Integer ULevel, Integer balance) {
         UserId = userId;
         Password = password;
         UserName = userName;
@@ -47,6 +43,7 @@ public class User {
         Answer = answer;
         this.UState = UState;
         this.ULevel = ULevel;
+        Balance = balance;
     }
 
     public String getUserId() {
@@ -185,6 +182,14 @@ public class User {
         this.ULevel = ULevel;
     }
 
+    public Integer getBalance() {
+        return Balance;
+    }
+
+    public void setBalance(Integer balance) {
+        Balance = balance;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -205,6 +210,7 @@ public class User {
                 ", Answer='" + Answer + '\'' +
                 ", UState=" + UState +
                 ", ULevel=" + ULevel +
+                ", Balance=" + Balance +
                 '}';
     }
 }

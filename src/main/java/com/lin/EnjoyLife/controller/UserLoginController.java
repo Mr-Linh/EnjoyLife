@@ -1,17 +1,14 @@
 package com.lin.EnjoyLife.controller;
 
-import com.lin.EnjoyLife.pojo.User;
 import com.lin.EnjoyLife.service.UserLoginService;
-import com.sun.org.apache.bcel.internal.classfile.Code;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import sun.security.util.Password;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.jws.soap.SOAPBinding;
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class UserLoginController {
@@ -19,18 +16,21 @@ public class UserLoginController {
     UserLoginService userLoginService;
 
     @PostMapping("/uCheck")
-    public String UserLogin(@RequestParam("UserId") String UserId, @RequestParam("Password") String Password, @RequestParam("card") String Card, @RequestParam("loginCodeHidden") String Code, Model model) {
+    public String UserLogin(@RequestParam("UserId") String UserId, @RequestParam("Password") String Password,
+                            @RequestParam("card") String Card, @RequestParam("loginCodeHidden") String Code,
+                            RedirectAttributes redirectAttributes, HttpSession httpSession) {
         if (!Code.equals(Card.toUpperCase())) {
-            model.addAttribute("UserLoginCodeError", "验证码错误");
-            return "login";
+            redirectAttributes.addFlashAttribute("UserLoginCodeError", "验证码错误");
+            return "redirect:/login";
         }else{
-            Boolean aBoolean = userLoginService.UserLogin(UserId, Password);
-            if (aBoolean) {
-                model.addAttribute("UserId", UserId);
-                return "index";
+            String s = userLoginService.UserLogin(UserId, Password);
+            if (s.equals("登录成功")) {
+                redirectAttributes.addFlashAttribute("UserId", UserId);
+                httpSession.setAttribute("userId",UserId);
+                return "redirect:/index";
             } else {
-                model.addAttribute("UserLoginError", "用户id或密码错误");
-                return "login";
+                redirectAttributes.addFlashAttribute("UserLoginError", s);
+                return "redirect:/login";
             }
         }
 

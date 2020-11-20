@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+    <!--layui-->
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+    <script src="/layui/layui.js" charset="utf-8"></script>
+
+    <!--bootstrap-->
+    <link rel="stylesheet" href="/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script src="/bootstrap-3.3.7-dist/js/jquery-1.11.1.min.js"></script>
+    <script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/css/personalCenter.css">
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/index">EnjoyLife</a>
+                <a class="navbar-brand" href="#">个人中心</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav"></ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <div class="head_img_div"><img class="head_img" src="/img/icon/qq.png" alt="头像显示错误">
+                        </div>
+                    </li>
+                    <li class="dropdown">
+
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false" th:text="${userName}"><span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <!--                            <li><a href="#">账户信息</a></li>-->
+                            <!--                            <li><a href="#">个人信息</a></li>-->
+                            <!--                            <li><a href="#">账户余额</a></li>-->
+                            <!--                            <li role="separator" class="divider"></li>-->
+                            <li><a href="/logout">退出登录</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <!--            </ul>-->
+                <!--            <ul class="nav navbar-nav navbar-right">-->
+                <!--                <li><a href="../navbar/">Default</a></li>-->
+                <!--                <li class="active"><a href="./">Static top <span class="sr-only">(current)</span></a></li>-->
+                <!--                <li><a href="../navbar-fixed-top/">Fixed top</a></li>-->
+                <!--            </ul>-->
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+    <div class="main-content">
+        <!-- 左侧边 -->
+        <div class="left-side">
+            <ul>
+                <li>
+                    <a href="accountInfo">账户信息</a>
+                </li>
+                <li>
+                    <a href="personalInfo" class="active">个人信息</a>
+                </li>
+                <li>
+                    <a href="accountBalance">账户余额</a>
+                </li>
+            </ul>
+        </div>
+        <!-- 右边内容 -->
+        <div class="right-content">
+            <!--/*@thymesVar id="msg" type="java.lang.String"*/-->
+            <input id="msg" type="hidden" th:value="${msg}"/>
+            <!--            <div class="container">-->
+            <!--                <div class="text-center">-->
+            <div class="content" style="display: flex">
+
+                <form class="layui-form" action="/personalInfoChange" method="post">
+                    <div class="layui-card-header">个人信息</div>
+                    <div class="layui-card-body">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" style="width: 120px">用户id</label>
+                                <div class="layui-input-inline">
+                                    <label>
+                                        <input type="text" name="userId" disabled="disabled" class="layui-input"
+                                               th:value="${userId}"/>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" style="width: 120px">真实姓名</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="realName" disabled="disabled" class="layui-input"
+                                           th:value="${realName}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <!--                                <div class="layui-form-item">-->
+                        <!--                                    <label class="layui-form-label" style="width: 120px">用户id</label>-->
+                        <!--                                    <div class="layui-input-inline">-->
+                        <!--                                        <label>-->
+                        <!--                                            <input type="text" name="userId" disabled="disabled" class="layui-input" />-->
+                        <!--                                        </label>-->
+                        <!--                                    </div>-->
+                        <!--                                </div>-->
+                        <!--                                <div class="layui-form-item">-->
+                        <!--                                    <label class="layui-form-label" style="width: 120px">真实姓名</label>-->
+                        <!--                                    <div class="layui-input-inline">-->
+                        <!--                                        <input type="text" name="realname" disabled="disabled" class="layui-input">-->
+                        <!--                                    </div>-->
+                        <!--                                </div>-->
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width: 120px">性别</label>
+                            <div class="layui-input-inline">
+                                <input type="radio" name="sex" value="男" title="男" th:checked="${sex.equals('男')}">
+                                <input type="radio" name="sex" value="女" title="女" th:checked="${sex.equals('女')}">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label" style="width: 120px">联系电话</label>
+                                <div class="layui-input-inline">
+                                    <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off"
+                                           class="layui-input" th:value="${tel}"/>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" style="width: 120px">E-mail</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="email" lay-verify="required|email" autocomplete="off"
+                                           class="layui-input" th:value="${email}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width: 120px">身份证号</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="identity" disabled="disabled"
+                                       class="layui-input" th:value="${identityNumber}"/>
+                            </div>
+                        </div>
+                        <div class="layui-form-item layui-form-text">
+                            <label class="layui-form-label" style="width: 120px">家庭住址</label>
+                            <div class="layui-input-block">
+                            <textarea type="text" name="address" lay-verify="required" lay-reqtext="请输入您的家庭住址！"
+                                      class="layui-textarea" th:text="${address}"></textarea>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width: 120px">学历</label>
+                            <div class="layui-input-inline">
+                                <select name="education" lay-filter="study">
+                                    <option value="" selected="请选择学历" disabled="disabled"></option>
+                                    <option value="小学" th:selected="${education eq '小学'}">小学</option>
+                                    <option value="初中" th:selected="${education eq '初中'}">初中</option>
+                                    <option value="中专" th:selected="${education eq '中专'}">中专</option>
+                                    <option value="高中" th:selected="${education eq '高中'}">高中</option>
+                                    <option value="大专" th:selected="${education eq '大专'}">大专</option>
+                                    <option value="本科及以上" th:selected="${education eq '本科及以上'}">本科及以上</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width: 120px">当前职业</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="profession" lay-verify="required" lay-reqtext="请输入当前职业"
+                                       autocomplete="off" class="layui-input" th:value="${profession}"/>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <input type="checkbox" id="realInfo" lay-verify="check" checked="checked" title="我已阅读">
+                                <a href="#" target="_blank"><b>《服务条款》</b></a>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1" id="submit">
+                                    立即提交
+                                </button>
+                                <a href="/personalInfo"><input type="button"
+                                                               class="layui-btn layui-btn-primary" value="重置"/></a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <!--                    </div>-->
+
+            </div>
+
+            <!--            </div>-->
+        </div>
+    </div>
+</div>
+<script>
+    layui.use(['form', 'layedit', 'laydate'], function () {
+        var form = layui.form
+            , layer = layui.layer
+            , laypage = layui.laypage;
+        if (layui.$("#msg").val() !== "") {
+            layer.alert(layui.$("#msg").val());
+        }
+        //自定义样式
+        laypage.render({
+            elem: 'demo'
+            , count: 100
+            , theme: '#1E9FFF'
+        });
+
+
+        //监听提交
+        form.on('submit(demo1)', function (data) {
+            if (layui.$("input[name=identityNumber]").checked()) {
+                layer.alert(JSON.stringify(data.field), {
+                    title: '最终的提交信息'
+                })
+            }
+            return false;
+        });
+
+        //表单取值
+        layui.$('#LAY-component-form-getval').on('click', function () {
+            var data = form.val('example');
+            alert(JSON.stringify(data));
+        });
+
+    });
+</script>
+</body>
+</html>

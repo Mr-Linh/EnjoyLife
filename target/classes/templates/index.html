@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Index</title>
@@ -39,7 +39,10 @@
                 <li class="nav_ul_li">接受委托</li>
                 <li class="nav_ul_li">个人中心</li>
                 <li class="nav_ul_li">关于我们</li>
+                <a class="nav_ul_li" th:if="${#strings.isEmpty(UserId)}" th:href="@{/login}">登录/注册</a>
+                <a class="nav_ul_li" th:if="${not #strings.isEmpty(UserId)}" th:href="@{/logout}">登出</a>
             </ul>
+            <!--            <p>登出</p>-->
         </nav>
     </div>
     <div class="clear"></div>
@@ -58,15 +61,15 @@
         <div class="box01_content">
             <div class="head_div">
                 <div class="cycle_item">
-                    <a href="http://www.baidu.com" class="github_a" id="github_a" target="_blank">
+                    <a href="http://www.baidu.com" class="github_a" id="github_a">
                         <span class="github_icon"></span>
                         <span class="github_text"><p class="item_name">发布委托</p></span>
                     </a>
-                    <a href="http://www.baidu.com" class="weibo_a" id="weibo_a" target="_blank">
+                    <a href="http://www.baidu.com" class="weibo_a" id="weibo_a">
                         <span class="weibo_icon"></span>
                         <span class="weibo_text"><p class="item_name">接受委托</p> </span>
                     </a>
-                    <a href="http://www.baidu.com" class="blog_a" id="blog_a" target="_blank">
+                    <a href="/accountInfo" class="blog_a" id="blog_a">
                         <span class="blog_icon"></span>
                         <!--                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>-->
                         <span class="blog_text"><p class="item_name">个人中心</p></span>
@@ -91,6 +94,7 @@
             <h2 class="title_h2">EnjoyLife</h2>
             <div id="box01_text">
                 <p class="box01_p"></p>
+                <p class="box01_p" th:text="${UserId}"></p>
                 <p class="box01_p">下拉发现更多精彩</p>
                 <!--                <p class="box01_p">2</p>-->
                 <!--                <p class="box01_p">3</p>-->
@@ -189,7 +193,7 @@
         </div>
 
         <div class="arrow_div">
-            <img class="arrow_img" src="images/icon/arrowhead.png">
+            <img class="arrow_img" src="/img/icon/arrowhead.png">
         </div>
 
     </div>
@@ -254,16 +258,18 @@
             <h1 class="box04_title">Something Of Information</h1>
             <ul class="hobby_content">
                 <li class="hobby_01">
-                    <div class="hobby_img_div">
-                        <div class="spinner spinner_01"></div>
-                        <div class="hobby_img">
-                            <img src="/img/upload/kapok.jpg">
+                    <a href="/accountInfo">
+                        <div class="hobby_img_div">
+                            <div class="spinner spinner_01"></div>
+                            <div class="hobby_img">
+                                <img src="/img/upload/kapok.jpg">
+                            </div>
+                            <div class="hobby_img_info">
+                                <h1>账号信息</h1>
+                                <h2>Account Information</h2>
+                            </div>
                         </div>
-                        <div class="hobby_img_info">
-                            <h1>账号信息</h1>
-                            <h2>Account Information</h2>
-                        </div>
-                    </div>
+                    </a>
                     <div class="hobby_text_div">
                         <div class="hobby_img_info_mob">
                             <h1>账号信息<a>Account Information</a></h1>
@@ -276,16 +282,18 @@
                     </div>
                 </li>
                 <li class="hobby_02">
-                    <div class="hobby_img_div">
-                        <div class="spinner spinner_02"></div>
-                        <div class="hobby_img">
-                            <img src="/img/upload/acg.png">
+                    <a href="/personalInfo">
+                        <div class="hobby_img_div">
+                            <div class="spinner spinner_02"></div>
+                            <div class="hobby_img">
+                                <img src="/img/upload/acg.png">
+                            </div>
+                            <div class="hobby_img_info">
+                                <h1>个人信息</h1>
+                                <h2>Personal Information</h2>
+                            </div>
                         </div>
-                        <div class="hobby_img_info">
-                            <h1>个人信息</h1>
-                            <h2>Personal Information</h2>
-                        </div>
-                    </div>
+                    </a>
                     <div class="hobby_text_div">
                         <div class="hobby_img_info_mob">
                             <h1>个人信息<a>Personal Information</a></h1>
@@ -298,16 +306,18 @@
                     </div>
                 </li>
                 <li class="hobby_03">
-                    <div class="hobby_img_div">
-                        <div class="spinner spinner_03"></div>
-                        <div class="hobby_img">
-                            <!--                                <img src="/img/upload/reading.jpg">-->
+                    <a href="accountBalance">
+                        <div class="hobby_img_div">
+                            <div class="spinner spinner_03"></div>
+                            <div class="hobby_img">
+                                <!--                                <img src="/img/upload/reading.jpg">-->
+                            </div>
+                            <div class="hobby_img_info">
+                                <h1>账户余额</h1>
+                                <h2>Account Balance</h2>
+                            </div>
                         </div>
-                        <div class="hobby_img_info">
-                            <h1>账户余额</h1>
-                            <h2>Account Balance</h2>
-                        </div>
-                    </div>
+                    </a>
                     <div class="hobby_text_div">
                         <div class="hobby_img_info_mob">
                             <h1>账户余额<a>Account Balance</a></h1>
@@ -388,7 +398,6 @@
     layui.use(['form', 'layedit', 'laydate'], function () {
         var form = layui.form
             , layer = layui.layer;
-
 
 
         //监听提交

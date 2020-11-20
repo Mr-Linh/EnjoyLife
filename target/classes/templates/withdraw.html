@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>余额提现</title>
+    <link rel="stylesheet" type="text/css" href="/css/accountBalance.css"/>
+
+    <!--layui-->
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+    <script src="/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
+
+    <!--bootstrap-->
+    <link rel="stylesheet" href="/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script src="/bootstrap-3.3.7-dist/js/jquery-1.11.1.min.js"></script>
+    <script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/personalCenter.css">
+
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/index">EnjoyLife</a>
+                <a class="navbar-brand" href="#">个人中心</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav"></ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <div class="head_img_div"><img class="head_img" src="/img/icon/qq.png" alt="头像显示错误">
+                        </div>
+                    </li>
+                    <li class="dropdown">
+
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false" th:text="${userName}"><span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <!--                            <li><a href="#">账户信息</a></li>-->
+                            <!--                            <li><a href="#">个人信息</a></li>-->
+                            <!--                            <li><a href="#">账户余额</a></li>-->
+                            <!--                            <li role="separator" class="divider"></li>-->
+                            <li><a href="/logout">退出登录</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <!--            </ul>-->
+                <!--            <ul class="nav navbar-nav navbar-right">-->
+                <!--                <li><a href="../navbar/">Default</a></li>-->
+                <!--                <li class="active"><a href="./">Static top <span class="sr-only">(current)</span></a></li>-->
+                <!--                <li><a href="../navbar-fixed-top/">Fixed top</a></li>-->
+                <!--            </ul>-->
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+    <div class="main-content">
+        <!-- 左侧边 -->
+        <div class="left-side">
+            <ul>
+                <li>
+                    <a href="/accountInfo">账户信息</a>
+                </li>
+                <li>
+                    <a href="/personalInfo">个人信息</a>
+                </li>
+                <li>
+                    <a href="/accountBalance" class="active">账户余额</a>
+                </li>
+            </ul>
+        </div>
+        <!-- 右边内容 -->
+        <div class="right-content">
+            <div class="tr_recharge">
+                <div class="tr_rechtext">
+                    <p class="te_retit"><img src="/img/coin.png" alt="###"/>提现中心</p>
+                    <p>1.硬币可通过完成委托或充值获取。</p>
+                    <p>2.硬币与人民币换算为1：1，即1元=1硬币，你可以选择提现到微信或支付宝，硬币每次30个起提现。</p>
+                </div>
+                <input id="msg" type="hidden" th:value="${msg}" />
+                <form class="am-form layui-form" id="doc-vld-msg" action="/withdrawBalance" method="post">
+                    <div class="tr_rechbox">
+                        <div class="tr_rechhead">
+                            <img src="/img/ys_head2.jpg"/>
+                            <p>提现账号：
+                                <a th:text="${userId}"></a>
+                            </p>
+                            <div style="float:right;">
+                                <div class="tr_rechheadcion">
+                                    <img src="/img/coin.png" alt="###"/>
+                                    <span>当前余额：<span th:text="${balance}"></span>硬币</span>
+                                </div>
+                                <div class="layui-form-item">
+                                    <div class="layui-input-block">
+                                        <a href="/accountBalance">
+                                            <input name="accountBalance" type="button" class="layui-btn layui-btn-sm layui-btn-primary" value="我要充值" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--                        <div class="am-form-group">-->
+                        <!--                            <span>充值金额</span>-->
+                        <!--                            <div class="layui-input-block">-->
+                        <!--                                <ul class="ui-choose am-form-group" id="uc_01">-->
+                        <!--                                <li><input type="radio" name="money" value="10" title="￥10" checked=""></li>-->
+                        <!--                                <li><input type="radio" name="money" value="20" title="￥20"></li>-->
+                        <!--                                </ul>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+                        <div class="tr_rechcho am-form-group">
+                            <span>提现金额：</span>
+                            <label class="am-radio">
+                                <input type="radio" name="money" value="30" title="￥30" checked="">
+                            </label>
+                            <label class="am-radio" style="margin-right:30px;">
+                                <input type="radio" name="money" value="100" title="￥100">
+                            </label>
+                            <label class="am-radio" style="margin-right:30px;">
+                                <input type="radio" name="money" value="200" title="￥200">
+                            </label>
+                            <label class="am-radio" style="margin-right:30px;">
+                                <input type="radio" name="money" value="500" title="￥500">
+                            </label>
+                        </div>
+                        <!--                            <ul class="ui-choose am-form-group" id="uc_01">-->
+                        <!--                                <li>-->
+                        <!--                                    <label class="am-radio-inline">-->
+                        <!--                                        <input type="radio"  value="" name="docVlGender" required data-validation-message="请选择一项充值额度"> 10￥-->
+                        <!--                                    </label>-->
+                        <!--                                </li>-->
+                        <!--                                <li>-->
+                        <!--                                    <label class="am-radio-inline">-->
+                        <!--                                        <input type="radio" name="docVlGender" data-validation-message="请选择一项充值额度"> 20￥-->
+                        <!--                                    </label>-->
+                        <!--                                </li>-->
+
+                        <!--                                <li>-->
+                        <!--                                    <label class="am-radio-inline">-->
+                        <!--                                        <input type="radio" name="docVlGender" data-validation-message="请选择一项充值额度"> 50￥-->
+                        <!--                                    </label>-->
+                        <!--                                </li>-->
+                        <!--                                <li>-->
+                        <!--                                    <label class="am-radio-inline">-->
+                        <!--                                        <input type="radio" name="docVlGender" data-validation-message="请选择一项充值额度"> 其他金额-->
+                        <!--                                    </label>-->
+                        <!--                                </li>-->
+                        <!--                            </ul>-->
+                        <div class="tr_rechcho am-form-group">
+                            <span>提现方式：</span>
+                            <label class="am-radio">
+                                <input type="radio" name="radio1" value="提现到微信" checked="checked"><img src="/img/wechatpay.png">
+                            </label>
+                            <label class="am-radio" style="margin-right:30px;">
+                                <input type="radio" name="radio1" value="提现到支付宝"><img src="/img/zfbpay.png">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="tr_paybox">
+                        <input type="submit" value="确认提现" class="tr_pay am-btn"/>
+                        <span>温馨提示：硬币只限于在委托中心发布委托，遇到问题请拨打联系电话</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    layui.use(['form', 'layedit', 'laydate'], function () {
+        var form = layui.form
+            , layer = layui.layer;
+
+        if(layui.$("#msg").val()!==""){
+            layer.alert(layui.$("#msg").val());
+        }
+
+        //监听提交
+        form.on('submit(demo1)', function (data) {
+            if (layui.$("input[name=identityNumber]").checked()) {
+                layer.alert(JSON.stringify(data.field), {
+                    title: '最终的提交信息'
+                })
+            }
+            return false;
+        });
+
+        //表单取值
+        layui.$('#LAY-component-form-getval').on('click', function () {
+            var data = form.val('example');
+            alert(JSON.stringify(data));
+        });
+
+    });
+</script>
+</body>
+</html>

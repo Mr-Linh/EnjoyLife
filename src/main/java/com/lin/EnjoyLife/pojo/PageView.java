@@ -1,8 +1,5 @@
 package com.lin.EnjoyLife.pojo;
 
-
-
-
 public class PageView {
     private Integer pid;
     private String name;

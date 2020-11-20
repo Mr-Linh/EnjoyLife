@@ -75,7 +75,7 @@ public class RegisterController {
             user.setAnswer(answer);
             user.setUState(2);
             user.setULevel(1);
-
+            user.setBalance(0);
         } catch (Exception e) {
             e.printStackTrace();
         }
