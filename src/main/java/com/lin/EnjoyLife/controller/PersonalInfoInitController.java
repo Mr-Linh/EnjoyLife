@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import javax.servlet.http.HttpSession;
 
 @Controller
-public class personalInfoInitController {
+public class PersonalInfoInitController {
     @Autowired
     personalInfoService personalInfoService;
 

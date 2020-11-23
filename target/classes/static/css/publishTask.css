@@ -1,3 +1,82 @@
+body{
+    background-color: #afdcff;
+    width: 100%;
+    position: relative;
+}
+img{
+    vertical-align:middle;
+}
+.head_img {
+    margin-top: 5px;
+    width: 4.5rem;
+    height: 4.5rem;
+    margin-bottom: 0.1rem;
+    border: 2px solid deepskyblue;
+}
+
+#btn-search{
+    width: 80px;
+    margin-left: 15px;
+}
+
+#bs-example-navbar-collapse-1{
+    margin-left: 160px;
+}
+.dropdown-submenu {
+    position: relative;
+}
+.dropdown-submenu > .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover > .dropdown-menu {
+    display: block;
+}
+.dropdown-submenu > a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #ccc;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+.dropdown-submenu:hover > a:after {
+    border-left-color: #fff;
+}
+.dropdown-submenu.pull-left {
+    float: none;
+}
+.dropdown-submenu.pull-left > .dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+}
+#demo{
+    text-align: center;
+}
+/* 主体内容 */
+
+.main-content {
+    /* 固定 width + height */
+    width: 1140px;
+    height: 649px;
+    /*margin-top: 70px;*/
+    background-color: white;
+}
+
+
 .content{
     width: 700px;
     margin: auto;

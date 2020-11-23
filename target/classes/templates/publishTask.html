@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>发布委托</title>
@@ -9,33 +9,77 @@
     <link rel="stylesheet" href="/css/publishTask.css">
     <script src="/js/jquery.min.js"></script>
     <script src="/js/publishTask.js"></script>
-
+    <!--bootstrap-->
+    <link rel="stylesheet" href="/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script src="/bootstrap-3.3.7-dist/js/jquery-1.11.1.min.js"></script>
+    <script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/personalCenter.css">
 </head>
 <body>
 <div class="container">
-    <div class="text-center">
-        <div class="page-header" style="text-align: center;margin-top: 15px ">
-            <h1>填写委托信息</h1>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/index">EnjoyLife</a>
+                <a class="navbar-brand" href="#">个人中心</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav"></ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <div class="head_img_div"><img class="head_img" src="/img/icon/qq.png" alt="头像显示错误">
+                        </div>
+                    </li>
+                    <li class="dropdown">
+
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false" th:text="${userName}"><span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <!--                            <li><a href="#">账户信息</a></li>-->
+                            <!--                            <li><a href="#">个人信息</a></li>-->
+                            <!--                            <li><a href="#">账户余额</a></li>-->
+                            <!--                            <li role="separator" class="divider"></li>-->
+                            <li><a href="#">退出登录</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <!--            </ul>-->
+                <!--            <ul class="nav navbar-nav navbar-right">-->
+                <!--                <li><a href="../navbar/">Default</a></li>-->
+                <!--                <li class="active"><a href="./">Static top <span class="sr-only">(current)</span></a></li>-->
+                <!--                <li><a href="../navbar-fixed-top/">Fixed top</a></li>-->
+                <!--            </ul>-->
+            </div><!--/.nav-collapse -->
         </div>
+    </nav>
+    <div class="main-content">
         <div class="content" style="display: flex">
-            <form class="layui-form" action="">
-                <div class="layui-card-header"></div>
+            <input id="msg" type="hidden" th:value="${msg}" />
+            <form class="layui-form" action="/publishTaskFinish" method="post">
+                <div class="layui-card-header"><h2>填写委托信息</h2></div>
                 <div class="layui-card-body">
                     <div class="layui-form-item">
                         <div class="layui-inline">
-                            <label class="layui-form-label">委托类型</label>
+                            <label class="layui-form-label" style="width: 100px">委托类型</label>
                             <div class="layui-input-inline">
-                                <select id="category1" lay-filter="category1" lay-verify="required">
-                                    <option value="">请选择分类</option>
-                                    <option value="1">生活</option>
-                                    <option value="2">学习</option>
-                                    <option value="3">娱乐</option>
-                                    <option value="4">紧急</option>
+                                <select id="category1" name="category1" lay-filter="category1" lay-verify="required">
+                                    <option value="">请选择大分类</option>
+                                    <option value="生活">生活</option>
+                                    <option value="学习">学习</option>
+                                    <option value="娱乐">娱乐</option>
+                                    <option value="紧急">紧急</option>
                                 </select>
                             </div>
                             <div class="layui-input-inline">
-                                <select id="category2" lay-filter="category2" lay-verify="required">
-                                    <option value="">请选择分类</option>
+                                <select id="category2" name="category2" lay-filter="category2" lay-verify="required">
+                                    <option value="">请选择小分类</option>
                                     <option value="家政">家政</option>
                                     <option value="代领">代领</option>
                                     <option value="代送">代送</option>
@@ -45,36 +89,49 @@
                         </div>
                         <div class="layui-form-item">
                             <div class="layui-inline">
-                                <label class="layui-form-label">截止时间</label>
+                                <label class="layui-form-label" style="width: 100px">委托难度</label>
                                 <div class="layui-input-inline">
-                                    <input type="text" class="layui-input" id="test1" placeholder="yyyy-MM-dd">
+                                    <select id="tLevel" name="tLevel" lay-filter="tLevel" lay-verify="required">
+                                        <option value="">请选择委托难度</option>
+                                        <option value="简单">简单</option>
+                                        <option value="一般">一般</option>
+                                        <option value="困难">困难</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
                         <div class="layui-form-item">
                             <div class="layui-inline">
-                                <label class="layui-form-label">预计薪酬</label>
+                                <label class="layui-form-label" style="width: 100px">截止时间</label>
                                 <div class="layui-input-inline">
-                                    <input type="tel" name="phone" lay-verify="required|money" autocomplete="off" class="layui-input">
+                                    <input type="text" name="deadline" class="layui-input" id="test1" placeholder="yyyy-MM-dd">
                                 </div>
                             </div>
                         </div>
                         <div class="layui-form-item">
-                            <label class="layui-form-label">主题</label>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" style="width: 100px">预计薪酬</label>
+                                <div class="layui-input-inline">
+                                    <input type="number" name="price" lay-verify="required|money" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="width: 100px">主题</label>
                             <div class="layui-input-block">
                                 <input type="text" name="title" lay-verify="title" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-form-item layui-form-text">
-                            <label class="layui-form-label">详细内容</label>
+                            <label class="layui-form-label" style="width: 100px">详细内容</label>
                             <div class="layui-input-block">
-                                <textarea placeholder="请详细说明委托内容" class="layui-textarea" name="desc"></textarea>
+                                <textarea placeholder="请详细说明委托内容" class="layui-textarea" name="content"></textarea>
                             </div>
                         </div>
                         <div class="layui-form-item layui-form-text">
-                            <label class="layui-form-label">特殊要求</label>
+                            <label class="layui-form-label" style="width: 100px">特殊要求</label>
                             <div class="layui-input-block">
-                                <textarea placeholder="如有特殊要求，请说明" class="layui-textarea" name="desc"></textarea>
+                                <textarea placeholder="如有特殊要求，请说明" class="layui-textarea" name="special"></textarea>
                             </div>
                         </div>
                         <div class="layui-form-item">
@@ -98,6 +155,10 @@
         var form = layui.form
             , layer = layui.layer
             , laydate = layui.laydate;
+
+        if(layui.$("#msg").val()!==""){
+            layer.alert(layui.$("#msg").val());
+        }
 
         //常规用法
         laydate.render({

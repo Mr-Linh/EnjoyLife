@@ -13,7 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpSession;
 
 @Controller
-public class personalInfoChangeController {
+public class PersonalInfoChangeController {
     @Autowired
     personalInfoService personalInfoService;
 

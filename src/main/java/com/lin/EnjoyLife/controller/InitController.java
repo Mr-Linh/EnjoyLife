@@ -1,7 +1,10 @@
 package com.lin.EnjoyLife.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class InitController {
@@ -52,11 +55,6 @@ public class InitController {
     @GetMapping("/lifeTask")
     public String lifeTask(){
         return "lifeTask";
-    }
-
-    @GetMapping("/publishTask")
-    public String publishTask(){
-        return "publishTask";
     }
 
     @GetMapping("/taskCenter")

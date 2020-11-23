@@ -1,13 +1,17 @@
 package com.lin.EnjoyLife.pojo;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.sql.Date;
 
 public class Task {
-    private String Task;
+    private String TaskId;
     private String Category1;
     private String Category2;
     private String Publisher;
-    private Date PublishTime;
+    private String PublishTime;
     private Date DeadLine;
     private String Theme;
     private String Content;
@@ -15,6 +19,7 @@ public class Task {
     private String TLevel;
     private Integer Price;
     private String PublisherPhone;
+    private Integer TState;
     private String Executor;
     private String ExecutorPhone;
     private String Evaluation;
@@ -22,8 +27,8 @@ public class Task {
     public Task() {
     }
 
-    public Task(String task, String category1, String category2, String publisher, Date publishTime, Date deadLine, String theme, String content, String special, String TLevel, Integer price, String publisherPhone, String executor, String executorPhone, String evaluation) {
-        Task = task;
+    public Task(String taskId, String category1, String category2, String publisher, String publishTime, Date deadLine, String theme, String content, String special, String TLevel, Integer price, String publisherPhone, Integer TState, String executor, String executorPhone, String evaluation) {
+        TaskId = taskId;
         Category1 = category1;
         Category2 = category2;
         Publisher = publisher;
@@ -35,17 +40,18 @@ public class Task {
         this.TLevel = TLevel;
         Price = price;
         PublisherPhone = publisherPhone;
+        this.TState = TState;
         Executor = executor;
         ExecutorPhone = executorPhone;
         Evaluation = evaluation;
     }
 
-    public String getTask() {
-        return Task;
+    public String getTaskId() {
+        return TaskId;
     }
 
-    public void setTask(String task) {
-        Task = task;
+    public void setTaskId(String taskId) {
+        TaskId = taskId;
     }
 
     public String getCategory1() {
@@ -72,11 +78,11 @@ public class Task {
         Publisher = publisher;
     }
 
-    public Date getPublishTime() {
+    public String getPublishTime() {
         return PublishTime;
     }
 
-    public void setPublishTime(Date publishTime) {
+    public void setPublishTime(String publishTime) {
         PublishTime = publishTime;
     }
 
@@ -136,6 +142,14 @@ public class Task {
         PublisherPhone = publisherPhone;
     }
 
+    public Integer getTState() {
+        return TState;
+    }
+
+    public void setTState(Integer TState) {
+        this.TState = TState;
+    }
+
     public String getExecutor() {
         return Executor;
     }
@@ -163,11 +177,11 @@ public class Task {
     @Override
     public String toString() {
         return "Task{" +
-                "Task='" + Task + '\'' +
+                "TaskId='" + TaskId + '\'' +
                 ", Category1='" + Category1 + '\'' +
                 ", Category2='" + Category2 + '\'' +
                 ", Publisher='" + Publisher + '\'' +
-                ", PublishTime=" + PublishTime +
+                ", PublishTime='" + PublishTime + '\'' +
                 ", DeadLine=" + DeadLine +
                 ", Theme='" + Theme + '\'' +
                 ", Content='" + Content + '\'' +
@@ -175,6 +189,7 @@ public class Task {
                 ", TLevel='" + TLevel + '\'' +
                 ", Price=" + Price +
                 ", PublisherPhone='" + PublisherPhone + '\'' +
+                ", TState=" + TState +
                 ", Executor='" + Executor + '\'' +
                 ", ExecutorPhone='" + ExecutorPhone + '\'' +
                 ", Evaluation='" + Evaluation + '\'' +

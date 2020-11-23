@@ -3,7 +3,6 @@ package com.lin.EnjoyLife.mapper;
 import com.lin.EnjoyLife.pojo.User;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.Date;
 import java.util.List;
@@ -40,4 +39,7 @@ public interface UserMapper {
 
     @Update("update user set UserName=#{UserName},Password=#{Password} where UserId=#{UserId}")
     Integer updateUserNameAndPassword(@Param("UserId") String UserId, @Param("UserName") String UserName, @Param("Password") String Password);
+
+    @Select("select * from user where UserId like '%${UserId}%' and UState=2")
+    List<User> accountCheckSearchById(@Param("UserId") String userId);
 }

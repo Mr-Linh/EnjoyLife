@@ -5,6 +5,7 @@
     <title>EnjoyLife后台管理系统</title>
     <link rel="stylesheet" href="/layui/css/layui.css">
     <link rel="stylesheet" href="/css/admin.css">
+    <script src="/layui/layui.js"></script>
 </head>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
@@ -68,11 +69,11 @@
 
     <div class="layui-body">
         <!-- 内容主体区域 -->
-        <div style="padding: 15px;height: 1500px">
-            <iframe id="iframeMain" src="initAdmin" class="embed-responsive-item" frameborder="0" name="iframeMain">
+
+            <iframe id="iframeMain" src="initAdmin" class="embed-responsive-item" frameborder="0" name="iframeMain" scrolling="auto"
+            width="100%">
 
             </iframe>
-        </div>
     </div>
 
 <!--    <div class="layui-footer">-->
@@ -80,13 +81,24 @@
 <!--        © layui.com - 底部固定区域-->
 <!--    </div>-->
 </div>
-<script src="/layui/layui.js"></script>
+
 <script>
     //JavaScript代码区域
     layui.use('element', function(){
         var element = layui.element;
 
+
     });
+    function changeFrameHeight(){
+        var ifm= document.getElementById("iframeMain");
+        ifm.height=document.documentElement.clientHeight;
+
+    }
+
+    window.onresize=function(){
+        changeFrameHeight();
+
+    }
 </script>
 </body>
 </html>

@@ -75,10 +75,10 @@ body{
 }
 
 .logo_img{
-    width: 350px;
-    height: 60px;
+    width: 300px;
+    height: 70px;
     /*border-radius: 50%;*/
-    border: 2px solid #ffffff;
+    /*border: 2px solid #ffffff;*/
     margin-bottom: 15px;
 }
 
@@ -623,7 +623,7 @@ body{
 
 .timeUl li div{
     height: 45%;
-    width: 100%;
+    width: 90%;
     background-color: #ffaf8d;
     filter:alpha(opacity=90);
     -moz-opacity:0.9;
@@ -655,13 +655,13 @@ body{
 }
 
 .timeUl li div h1{
-    line-height: 40px;
+    line-height: 36px;
     font-size: 28px;
     font-weight: lighter;
 }
 
 .timeUl li div p{
-    line-height: 28px;
+    line-height: 24px;
     font-size: 18px;
     font-weight: lighter;
 }

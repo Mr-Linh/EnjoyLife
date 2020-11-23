@@ -24,4 +24,15 @@ public class AccountCheckService {
         }
         return users;
     }
+
+
+    public List<User> accountCheckSearchById(String userId) {
+        List<User> users = null;
+        try {
+            users = userMapper.accountCheckSearchById(userId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return users;
+    }
 }

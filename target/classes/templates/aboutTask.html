@@ -6,16 +6,17 @@
     <script src="/js/echarts.js" charset="UTF-8"></script>
 </head>
 <body>
-<div id="taskTotal">
-    <h3>平台委托发布比例图</h3>
-    <div id="taskTotalChart" style="width: 80%;height: 500px"></div>
-</div>
+<div style="padding-top: 20px;padding-left: 20px;padding-right: 20px;">
+    <div id="taskTotal">
+        <h3>平台委托发布比例图</h3>
+        <div id="taskTotalChart" style="width: 80%;height: 500px"></div>
+    </div>
 
-<div id="taskState">
-    <h3>委托类别比例图</h3>
-<div id="taskStateChart" style="width: 80%;height:500px;"></div>
+    <div id="taskState">
+        <h3>委托类别比例图</h3>
+        <div id="taskStateChart" style="width: 80%;height:500px;"></div>
+    </div>
 </div>
-
 <script type="text/javascript">
     var dom = document.getElementById("taskTotalChart");
     var myChart = echarts.init(dom);
