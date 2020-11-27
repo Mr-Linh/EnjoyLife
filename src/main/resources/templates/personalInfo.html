@@ -154,24 +154,25 @@
                             </div>
                         </div>
                         <div class="layui-form-item">
-                            <label class="layui-form-label" style="width: 120px">学历</label>
-                            <div class="layui-input-inline">
-                                <select name="education" lay-filter="study">
-                                    <option value="" selected="请选择学历" disabled="disabled"></option>
-                                    <option value="小学" th:selected="${education eq '小学'}">小学</option>
-                                    <option value="初中" th:selected="${education eq '初中'}">初中</option>
-                                    <option value="中专" th:selected="${education eq '中专'}">中专</option>
-                                    <option value="高中" th:selected="${education eq '高中'}">高中</option>
-                                    <option value="大专" th:selected="${education eq '大专'}">大专</option>
-                                    <option value="本科及以上" th:selected="${education eq '本科及以上'}">本科及以上</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label" style="width: 120px">当前职业</label>
-                            <div class="layui-input-inline">
-                                <input type="text" name="profession" lay-verify="required" lay-reqtext="请输入当前职业"
-                                       autocomplete="off" class="layui-input" th:value="${profession}"/>
+                            <div class="layui-inline">
+                                <label class="layui-form-label" style="width: 120px">学历</label>
+                                <div class="layui-input-inline">
+                                    <select name="education" lay-filter="study" lay-verify="required"
+                                            lay-reqtext="请选择学历">
+                                        <option value="" selected="请选择学历" disabled="disabled"></option>
+                                        <option value="小学" th:selected="${education eq '小学'}">小学</option>
+                                        <option value="初中" th:selected="${education eq '初中'}">初中</option>
+                                        <option value="中专" th:selected="${education eq '中专'}">中专</option>
+                                        <option value="高中" th:selected="${education eq '高中'}">高中</option>
+                                        <option value="大专" th:selected="${education eq '大专'}">大专</option>
+                                        <option value="本科及以上" th:selected="${education eq '本科及以上'}">本科及以上</option>
+                                    </select>
+                                </div>
+                                <label class="layui-form-label" style="width: 120px">当前职业</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="profession" lay-verify="required" lay-reqtext="请输入当前职业"
+                                           autocomplete="off" class="layui-input" th:value="${profession}"/>
+                                </div>
                             </div>
                         </div>
                         <div class="layui-form-item">
@@ -204,32 +205,60 @@
     layui.use(['form', 'layedit', 'laydate'], function () {
         var form = layui.form
             , layer = layui.layer
-            , laypage = layui.laypage;
+            , layedit = layui.layedit
+            , laydate = layui.laydate;
+
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+        laydate.render({
+            elem: '#date1'
+        });
         if (layui.$("#msg").val() !== "") {
             layer.alert(layui.$("#msg").val());
         }
-        //自定义样式
-        laypage.render({
-            elem: 'demo'
-            , count: 100
-            , theme: '#1E9FFF'
-        });
 
+        //自定义验证规则
+        form.verify({
+            title: function (value) {
+                if (value.length < 5) {
+                    return '标题至少得5个字符啊';
+                }
+            }
+            , pass: [
+                /^[\S]{6,12}$/
+                , '密码必须6到12位，且不能出现空格'
+            ]
+            , content: function (value) {
+                layedit.sync(editIndex);
+            }
+            , confirmPass: function (value) {
+                if (layui.$("input[name=password]").val() !== value)
+                    return '两次密码输入不一致！';
+            }
+            , realName: [
+                /^[\u4e00-\u9fa5]{2,4}$/
+                , '真实姓名2-4位汉字'
+            ]
+            , check: function () {
+                var checked = document.getElementById("realInfo");
+                if (checked.checked == false) {
+                    {
+                        return "请勾选协议";
+                    }
+                }
+            }
+        });
 
         //监听提交
         form.on('submit(demo1)', function (data) {
             if (layui.$("input[name=identityNumber]").checked()) {
-                layer.alert(JSON.stringify(data.field), {
-                    title: '最终的提交信息'
-                })
+                // layer.alert(JSON.stringify("感谢使用EnjoyLife!"), {
+                //     title: data.username
+                // })
             }
             return false;
-        });
-
-        //表单取值
-        layui.$('#LAY-component-form-getval').on('click', function () {
-            var data = form.val('example');
-            alert(JSON.stringify(data));
         });
 
     });

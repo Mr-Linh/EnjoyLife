@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>委托中心</title>
@@ -29,7 +29,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">EnjoyLife</a>
+                <a class="navbar-brand" href="/index">EnjoyLife</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -40,46 +40,50 @@
                            aria-haspopup="true"
                            aria-expanded="false">全部类别 <span class="caret"></span></a>
                         <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                            <li><a href="#" onclick="taskAll();return false;">全部类别/All</a></li>
                             <li class="dropdown-submenu">
-                                <a tabindex="-1" href="javascript:;">生活类别/Life</a>
+                                <a tabindex="-1" href="#" onclick="life();return false;">生活类别/Life</a>
                                 <ul class="dropdown-menu">
-                                    <li><a tabindex="-1" href="javascript:;">家政</a></li>
+                                    <li><a tabindex="-1" href="#" onclick="lifeHousework();return false;">家政</a></li>
                                     <li class="divider"></li>
-                                    <li><a tabindex="-1" href="javascript:;">代领</a></li>
+                                    <li><a tabindex="-1" href="#" onclick="lifeReceive();return false;">代领</a></li>
                                     <li class="divider"></li>
-                                    <li><a tabindex="-1" href="javascript:;">代送</a></li>
+                                    <li><a tabindex="-1" href="#" onclick="lifeSend();return false;">代送</a></li>
                                     <li class="divider"></li>
-                                    <li><a tabindex="-1" href="javascript:;">其他</a></li>
+                                    <li><a tabindex="-1" href="#" onclick="lifeOther();return false;">其他</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown-submenu">
-                                <a tabindex="-1" href="javascript:;">学习类别/Study</a>
+                                <a tabindex="-1" href="#" onclick="study();return false;">学习类别/Study</a>
                                 <ul class="dropdown-menu">
-                                    <li><a tabindex="-1" href="javascript:;">计算机</a></li>
+                                    <li><a tabindex="-1" href="#" onclick="studyComputer();return false;">计算机</a></li>
                                     <li class="divider"></li>
-                                    <li><a tabindex="-1" href="javascript:;">数学</a></li>
+                                    <li><a tabindex="-1" href="#" onclick="studyMath();return false;">数学</a></li>
                                     <li class="divider"></li>
-                                    <li><a tabindex="-1" href="javascript:;">英语</a></li>
+                                    <li><a tabindex="-1" href="#" onclick="studyEnglish();return false;">英语</a></li>
                                     <li class="divider"></li>
-                                    <li><a tabindex="-1" href="javascript:;">其他</a></li>
+                                    <li><a tabindex="-1" href="#" onclick="studyOther();return false;">其他</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown-submenu">
-                                <a tabindex="-1" href="javascript:;">娱乐类别/Entertainment</a>
+                                <a tabindex="-1" href="#" onclick="entertainment();return false;">娱乐类别/Entertainment</a>
                                 <ul class="dropdown-menu">
-                                    <li><a tabindex="-1" href="javascript:;">陪玩</a></li>
+                                    <li><a tabindex="-1" href="#" onclick="entertainmentPlay();return false;">陪玩</a>
+                                    </li>
                                     <li class="divider"></li>
-                                    <li><a tabindex="-1" href="javascript:;">陪吃</a></li>
+                                    <li><a tabindex="-1" href="#" onclick="entertainmentEat();return false;">陪吃</a></li>
                                     <li class="divider"></li>
-                                    <li><a tabindex="-1" href="javascript:;">陪聊</a></li>
+                                    <li><a tabindex="-1" href="#" onclick="entertainmentChat();return false;">陪聊</a>
+                                    </li>
                                     <li class="divider"></li>
-                                    <li><a tabindex="-1" href="javascript:;">其他</a></li>
+                                    <li><a tabindex="-1" href="#" onclick="entertainmentOther();return false;">其他</a>
+                                    </li>
                                 </ul>
                             </li>
                             <!--                        <li class="dropdown-submenu">-->
                             <!--                            <a tabindex="-1" href="javascript:;">紧急委托/Emergency</a>-->
                             <!--                        </li>-->
-                            <li><a href="javascript:;">紧急委托</a></li>
+                            <li><a href="#" onclick="emergency();return false;">紧急委托/Emergency</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -108,9 +112,9 @@
                 <!--            </ul>-->
                 <form class="navbar-form navbar-left">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="委托编号">
+                        <input id="searchContent" type="text" name="searchContent" class="form-control" placeholder="委托编号/委托主题">
                     </div>
-                    <button id="btn-search" type="submit" class="btn btn-default">搜索</button>
+                    <button id="btn-search" type="submit" class="btn btn-default" onclick="queryTask();return false;">搜索</button>
                 </form>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
@@ -120,13 +124,13 @@
                     <li class="dropdown">
 
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false">用户昵称<span class="caret"></span></a>
+                           aria-expanded="false" th:text="${userName}"><span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">账户信息</a></li>
-                            <li><a href="#">个人信息</a></li>
-                            <li><a href="#">账户余额</a></li>
+                            <li><a href="/accountInfo">账号信息</a></li>
+                            <li><a href="/personalInfo">个人信息</a></li>
+                            <li><a href="/accountBalance">账户余额</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#">退出登录</a></li>
+                            <li><a href="/logout">退出登录</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -140,19 +144,478 @@
 
         </div><!-- /.container-fluid -->
     </nav>
-    主体内容
+    <div class="main-content">
+        <input id="msg" type="hidden" th:value="${msg}"/>
+        <div class="layui-tab-content" id="taskContent" style="background-color: #f2f2f2;">
+            <div class="layui-tab-item layui-show">
+                <div class="layui-row layui-col-space15" id="taskList">
+                    未找到符合条件的委托
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="demo"></div>
 </div>
-<script>
-    layui.use(['laypage', 'layer'], function(){
+<script type="text/javascript">
+    var template = "<div class='layui-col-md12'><div class='layui-card'>" +
+        "<div class='layui-card-header'>" +
+        "<div class='layui-col-md4'>主题：[theme]</div>" +
+        "<div class='layui-col-md3'>编号：[taskId]</div>" +
+        "<div class='layui-col-md3'>类别：[category]</div>" +
+        // "<div class='layui-col-md2'>截止时间：[deadline]</div>"+
+        "<div class='layui-col-md2'><a href='/taskCenterDetail'><button type='button' class='layui-btn layui-btn-sm layui-btn-normal'>详情</button></div></a>" +
+        "</div>" +
+        "<div class='layui-card-body'>委托内容：[content]</div>" +
+        "</div></div>";
+    var template2 = "<div>暂未有符合筛选条件的委托</div>";
+
+    function queryTask() {
+        var addressListUrl = "/taskCenterSearch?searchContent="+layui.$("#searchContent").val().toString();
+        // console.log(addressListUrl);
+        layui.$.get(addressListUrl, function (result) {
+            layui.$("#taskList").empty();
+            if (result.data.length != 0) {
+                for (var index in result.data) {
+                    var addr = result.data[index];
+                    var td = template.replace("[theme]", addr.theme)
+                        .replace("[taskId]", addr.taskId)
+                        .replace("[category]", addr.category1 + "  " + addr.category2)
+                        // .replace("[deadline]", addr.deadline)
+                        .replace("[content]", addr.content)
+                        .replace("/taskCenterDetail", "/taskCenterDetail?id=" + addr.taskId);
+                    var tdObj = layui.$(td);
+                    layui.$("#taskList").append(tdObj);
+                }
+            }else{
+                layui.$("#taskList").append(layui.$(template2));
+            }
+        });
+    }
+
+    function taskAll() {
+        var addressListUrl = "/taskCenter/All";
+        layui.$.get(addressListUrl, function (result) {
+            layui.$("#taskList").empty();
+            if (result.data.length != 0) {
+
+                for (var index in result.data) {
+                    var addr = result.data[index];
+                    var td = template.replace("[theme]", addr.theme)
+                        .replace("[taskId]", addr.taskId)
+                        .replace("[category]", addr.category1 + "  " + addr.category2)
+                        // .replace("[deadline]", addr.deadline)
+                        .replace("[content]", addr.content)
+                        .replace("/taskCenterDetail", "/taskCenterDetail?id=" + addr.taskId);
+                    var tdObj = layui.$(td);
+                    layui.$("#taskList").append(tdObj);
+                }
+            }else{
+                layui.$("#taskList").append(layui.$(template2));
+            }
+        });
+    }
+
+    function life() {
+        var addressListUrl = "/taskCenter/Life";
+        layui.$.get(addressListUrl, function (result) {
+            layui.$("#taskList").empty();
+            if (result.data.length != 0) {
+
+                for (var index in result.data) {
+                    var addr = result.data[index];
+                    var td = template.replace("[theme]", addr.theme)
+                        .replace("[taskId]", addr.taskId)
+                        .replace("[category]", addr.category1 + "  " + addr.category2)
+                        // .replace("[deadline]", addr.deadline)
+                        .replace("[content]", addr.content)
+                        .replace("/taskCenterDetail", "/taskCenterDetail?id=" + addr.taskId);
+                    var tdObj = layui.$(td);
+                    layui.$("#taskList").append(tdObj);
+                }
+            }else{
+                layui.$("#taskList").append(layui.$(template2));
+            }
+        });
+    }
+
+    function lifeHousework() {
+        var addressListUrl = "/taskCenter/Life/housework";
+        layui.$.get(addressListUrl, function (result) {
+            layui.$("#taskList").empty();
+            if (result.data.length != 0) {
+
+                for (var index in result.data) {
+                    var addr = result.data[index];
+                    var td = template.replace("[theme]", addr.theme)
+                        .replace("[taskId]", addr.taskId)
+                        .replace("[category]", addr.category1 + "  " + addr.category2)
+                        // .replace("[deadline]", addr.deadline)
+                        .replace("[content]", addr.content)
+                        .replace("/taskCenterDetail", "/taskCenterDetail?id=" + addr.taskId);
+                    var tdObj = layui.$(td);
+                    layui.$("#taskList").append(tdObj);
+                }
+            }else{
+                layui.$("#taskList").append(layui.$(template2));
+            }
+        });
+    }
+
+    function lifeReceive() {
+        var addressListUrl = "/taskCenter/Life/receive";
+        layui.$.get(addressListUrl, function (result) {
+            layui.$("#taskList").empty();
+            if (result.data.length != 0) {
+
+                for (var index in result.data) {
+                    var addr = result.data[index];
+                    var td = template.replace("[theme]", addr.theme)
+                        .replace("[taskId]", addr.taskId)
+                        .replace("[category]", addr.category1 + "  " + addr.category2)
+                        // .replace("[deadline]", addr.deadline)
+                        .replace("[content]", addr.content)
+                        .replace("/taskCenterDetail", "/taskCenterDetail?id=" + addr.taskId);
+                    var tdObj = layui.$(td);
+                    layui.$("#taskList").append(tdObj);
+                }
+            }else{
+                layui.$("#taskList").append(layui.$(template2));
+            }
+        });
+    }
+
+    function lifeSend() {
+        var addressListUrl = "/taskCenter/Life/send";
+        layui.$.get(addressListUrl, function (result) {
+            layui.$("#taskList").empty();
+            if (result.data.length != 0) {
+
+                for (var index in result.data) {
+                    var addr = result.data[index];
+                    var td = template.replace("[theme]", addr.theme)
+                        .replace("[taskId]", addr.taskId)
+                        .replace("[category]", addr.category1 + "  " + addr.category2)
+                        // .replace("[deadline]", addr.deadline)
+                        .replace("[content]", addr.content)
+                        .replace("/taskCenterDetail", "/taskCenterDetail?id=" + addr.taskId);
+                    var tdObj = layui.$(td);
+                    layui.$("#taskList").append(tdObj);
+                }
+            }else{
+                layui.$("#taskList").append(layui.$(template2));
+            }
+        });
+    }
+
+    function lifeOther() {
+        var addressListUrl = "/taskCenter/Life/other";
+        layui.$.get(addressListUrl, function (result) {
+            layui.$("#taskList").empty();
+            if (result.data.length != 0) {
+
+                for (var index in result.data) {
+                    var addr = result.data[index];
+                    var td = template.replace("[theme]", addr.theme)
+                        .replace("[taskId]", addr.taskId)
+                        .replace("[category]", addr.category1 + "  " + addr.category2)
+                        // .replace("[deadline]", addr.deadline)
+                        .replace("[content]", addr.content)
+                        .replace("/taskCenterDetail", "/taskCenterDetail?id=" + addr.taskId);
+                    var tdObj = layui.$(td);
+                    layui.$("#taskList").append(tdObj);
+                }
+            }else{
+                layui.$("#taskList").append(layui.$(template2));
+            }
+        });
+    }
+
+    function study() {
+        var addressListUrl = "/taskCenter/Study";
+        layui.$.get(addressListUrl, function (result) {
+            layui.$("#taskList").empty();
+            if (result.data.length != 0) {
+
+                for (var index in result.data) {
+                    var addr = result.data[index];
+                    var td = template.replace("[theme]", addr.theme)
+                        .replace("[taskId]", addr.taskId)
+                        .replace("[category]", addr.category1 + "  " + addr.category2)
+                        // .replace("[deadline]", addr.deadline)
+                        .replace("[content]", addr.content)
+                        .replace("/taskCenterDetail", "/taskCenterDetail?id=" + addr.taskId);
+                    var tdObj = layui.$(td);
+                    layui.$("#taskList").append(tdObj);
+                }
+            }else{
+                layui.$("#taskList").append(layui.$(template2));
+            }
+        });
+    }
+
+    function studyComputer() {
+        var addressListUrl = "/taskCenter/Study/computer";
+        layui.$.get(addressListUrl, function (result) {
+            layui.$("#taskList").empty();
+            if (result.data.length != 0) {
+
+                for (var index in result.data) {
+                    var addr = result.data[index];
+                    var td = template.replace("[theme]", addr.theme)
+                        .replace("[taskId]", addr.taskId)
+                        .replace("[category]", addr.category1 + "  " + addr.category2)
+                        // .replace("[deadline]", addr.deadline)
+                        .replace("[content]", addr.content)
+                        .replace("/taskCenterDetail", "/taskCenterDetail?id=" + addr.taskId);
+                    var tdObj = layui.$(td);
+                    layui.$("#taskList").append(tdObj);
+                }
+            }else{
+                layui.$("#taskList").append(layui.$(template2));
+            }
+        });
+    }
+
+    function studyMath() {
+        var addressListUrl = "/taskCenter/Study/math";
+        layui.$.get(addressListUrl, function (result) {
+            layui.$("#taskList").empty();
+            if (result.data.length != 0) {
+
+                for (var index in result.data) {
+                    var addr = result.data[index];
+                    var td = template.replace("[theme]", addr.theme)
+                        .replace("[taskId]", addr.taskId)
+                        .replace("[category]", addr.category1 + "  " + addr.category2)
+                        // .replace("[deadline]", addr.deadline)
+                        .replace("[content]", addr.content)
+                        .replace("/taskCenterDetail", "/taskCenterDetail?id=" + addr.taskId);
+                    var tdObj = layui.$(td);
+                    layui.$("#taskList").append(tdObj);
+                }
+            }else{
+                layui.$("#taskList").append(layui.$(template2));
+            }
+        });
+    }
+
+    function studyEnglish() {
+        var addressListUrl = "/taskCenter/Study/english";
+        layui.$.get(addressListUrl, function (result) {
+            layui.$("#taskList").empty();
+            if (result.data.length != 0) {
+
+                for (var index in result.data) {
+                    var addr = result.data[index];
+                    var td = template.replace("[theme]", addr.theme)
+                        .replace("[taskId]", addr.taskId)
+                        .replace("[category]", addr.category1 + "  " + addr.category2)
+                        // .replace("[deadline]", addr.deadline)
+                        .replace("[content]", addr.content)
+                        .replace("/taskCenterDetail", "/taskCenterDetail?id=" + addr.taskId);
+                    var tdObj = layui.$(td);
+                    layui.$("#taskList").append(tdObj);
+                }
+            }else{
+                layui.$("#taskList").append(layui.$(template2));
+            }
+        });
+    }
+
+    function studyOther() {
+        var addressListUrl = "/taskCenter/Study/other";
+        layui.$.get(addressListUrl, function (result) {
+            layui.$("#taskList").empty();
+            if (result.data.length != 0) {
+
+                for (var index in result.data) {
+                    var addr = result.data[index];
+                    var td = template.replace("[theme]", addr.theme)
+                        .replace("[taskId]", addr.taskId)
+                        .replace("[category]", addr.category1 + "  " + addr.category2)
+                        // .replace("[deadline]", addr.deadline)
+                        .replace("[content]", addr.content)
+                        .replace("/taskCenterDetail", "/taskCenterDetail?id=" + addr.taskId);
+                    var tdObj = layui.$(td);
+                    layui.$("#taskList").append(tdObj);
+                }
+            }else{
+                layui.$("#taskList").append(layui.$(template2));
+            }
+        });
+    }
+
+    function entertainment() {
+        var addressListUrl = "/taskCenter/Entertainment";
+        layui.$.get(addressListUrl, function (result) {
+            layui.$("#taskList").empty();
+            if (result.data.length != 0) {
+
+                for (var index in result.data) {
+                    var addr = result.data[index];
+                    var td = template.replace("[theme]", addr.theme)
+                        .replace("[taskId]", addr.taskId)
+                        .replace("[category]", addr.category1 + "  " + addr.category2)
+                        // .replace("[deadline]", addr.deadline)
+                        .replace("[content]", addr.content)
+                        .replace("/taskCenterDetail", "/taskCenterDetail?id=" + addr.taskId);
+                    var tdObj = layui.$(td);
+                    layui.$("#taskList").append(tdObj);
+                }
+            }else{
+                layui.$("#taskList").append(layui.$(template2));
+            }
+        });
+    }
+
+    function entertainmentPlay() {
+        var addressListUrl = "/taskCenter/Entertainment/play";
+        layui.$.get(addressListUrl, function (result) {
+            layui.$("#taskList").empty();
+            if (result.data.length != 0) {
+
+                for (var index in result.data) {
+                    var addr = result.data[index];
+                    var td = template.replace("[theme]", addr.theme)
+                        .replace("[taskId]", addr.taskId)
+                        .replace("[category]", addr.category1 + "  " + addr.category2)
+                        // .replace("[deadline]", addr.deadline)
+                        .replace("[content]", addr.content)
+                        .replace("/taskCenterDetail", "/taskCenterDetail?id=" + addr.taskId);
+                    var tdObj = layui.$(td);
+                    layui.$("#taskList").append(tdObj);
+                }
+            }else{
+                layui.$("#taskList").append(layui.$(template2));
+            }
+        });
+    }
+
+    function entertainmentEat() {
+        var addressListUrl = "/taskCenter/Entertainment/eat";
+        layui.$.get(addressListUrl, function (result) {
+            layui.$("#taskList").empty();
+            if (result.data.length != 0) {
+
+                for (var index in result.data) {
+                    var addr = result.data[index];
+                    var td = template.replace("[theme]", addr.theme)
+                        .replace("[taskId]", addr.taskId)
+                        .replace("[category]", addr.category1 + "  " + addr.category2)
+                        // .replace("[deadline]", addr.deadline)
+                        .replace("[content]", addr.content)
+                        .replace("/taskCenterDetail", "/taskCenterDetail?id=" + addr.taskId);
+                    var tdObj = layui.$(td);
+                    layui.$("#taskList").append(tdObj);
+                }
+            }else{
+                layui.$("#taskList").append(layui.$(template2));
+            }
+        });
+    }
+
+    function entertainmentChat() {
+        var addressListUrl = "/taskCenter/Entertainment/chat";
+        layui.$.get(addressListUrl, function (result) {
+            layui.$("#taskList").empty();
+            if (result.data.length != 0) {
+
+                for (var index in result.data) {
+                    var addr = result.data[index];
+                    var td = template.replace("[theme]", addr.theme)
+                        .replace("[taskId]", addr.taskId)
+                        .replace("[category]", addr.category1 + "  " + addr.category2)
+                        // .replace("[deadline]", addr.deadline)
+                        .replace("[content]", addr.content)
+                        .replace("/taskCenterDetail", "/taskCenterDetail?id=" + addr.taskId);
+                    var tdObj = layui.$(td);
+                    layui.$("#taskList").append(tdObj);
+                }
+            }else{
+                layui.$("#taskList").append(layui.$(template2));
+            }
+        });
+    }
+
+    function entertainmentOther() {
+        var addressListUrl = "/taskCenter/Entertainment/other";
+        layui.$.get(addressListUrl, function (result) {
+            layui.$("#taskList").empty();
+            if (result.data.length != 0) {
+
+                for (var index in result.data) {
+                    var addr = result.data[index];
+                    var td = template.replace("[theme]", addr.theme)
+                        .replace("[taskId]", addr.taskId)
+                        .replace("[category]", addr.category1 + "  " + addr.category2)
+                        // .replace("[deadline]", addr.deadline)
+                        .replace("[content]", addr.content)
+                        .replace("/taskCenterDetail", "/taskCenterDetail?id=" + addr.taskId);
+                    var tdObj = layui.$(td);
+                    layui.$("#taskList").append(tdObj);
+                }
+            }else{
+                layui.$("#taskList").append(layui.$(template2));
+            }
+        });
+    }
+
+    function emergency() {
+        var addressListUrl = "/taskCenter/Emergency";
+        layui.$.get(addressListUrl, function (result) {
+            layui.$("#taskList").empty();
+            if (result.data.length != 0) {
+
+                for (var index in result.data) {
+                    var addr = result.data[index];
+                    var td = template.replace("[theme]", addr.theme)
+                        .replace("[taskId]", addr.taskId)
+                        .replace("[category]", addr.category1 + "  " + addr.category2)
+                        // .replace("[deadline]", addr.deadline)
+                        .replace("[content]", addr.content)
+                        .replace("/taskCenterDetail", "/taskCenterDetail?id=" + addr.taskId);
+                    var tdObj = layui.$(td);
+                    layui.$("#taskList").append(tdObj);
+                }
+            }else{
+                layui.$("#taskList").append(layui.$(template2));
+            }
+        });
+    }
+
+    layui.use(['laypage', 'layer'], function () {
         var laypage = layui.laypage
-            ,layer = layui.layer;
+            , layer = layui.layer;
+        if (layui.$("#msg").val() !== "") {
+            layer.alert(layui.$("#msg").val());
+        }
+
+        var addressListUrl = "/taskCenter/All";
+        layui.$.get(addressListUrl, function (result) {
+            layui.$("#taskList").empty();
+            if (result.data.length != 0) {
+
+                for (var index in result.data) {
+                    var addr = result.data[index];
+                    var td = template.replace("[theme]", addr.theme)
+                        .replace("[taskId]", addr.taskId)
+                        .replace("[category]", addr.category1 + "  " + addr.category2)
+                        // .replace("[deadline]", addr.deadline)
+                        .replace("[content]", addr.content)
+                        .replace("/taskCenterDetail", "/taskCenterDetail?id=" + addr.taskId);
+                    var tdObj = layui.$(td);
+                    layui.$("#taskList").append(tdObj);
+                }
+            }else{
+                layui.$("#taskList").append(layui.$(template2));
+            }
+        });
 
         //自定义样式
         laypage.render({
             elem: 'demo'
-            ,count: 100
-            ,theme: '#1E9FFF'
+            , count: 100
+            , theme: '#1E9FFF'
         });
 
 
@@ -162,14 +625,14 @@
         //调用分页
         laypage.render({
             elem: 'demo20'
-            ,count: data.length
-            ,jump: function(obj){
+            , count: data.length
+            , jump: function (obj) {
                 //模拟渲染
-                document.getElementById('biuuu_city_list').innerHTML = function(){
+                document.getElementById('biuuu_city_list').innerHTML = function () {
                     var arr = []
-                        ,thisData = data.concat().splice(obj.curr*obj.limit - obj.limit, obj.limit);
-                    layui.each(thisData, function(index, item){
-                        arr.push('<li>'+ item +'</li>');
+                        , thisData = data.concat().splice(obj.curr * obj.limit - obj.limit, obj.limit);
+                    layui.each(thisData, function (index, item) {
+                        arr.push('<li>' + item + '</li>');
                     });
                     return arr.join('');
                 }();

@@ -33,10 +33,11 @@ public class PublishTaskService {
         return size;
     }
 
-    public Boolean AddTask(Task task){
+    public Boolean AddTask(Task task, String userId, Integer balance){
         try {
             Integer integer = taskMapper.addTask(task);
-            return integer==1;
+            Integer integer1 = userMapper.updateUserBalance(userId, balance);
+            return integer==1 && integer1==1;
         }catch (Exception e){
             e.printStackTrace();
         }

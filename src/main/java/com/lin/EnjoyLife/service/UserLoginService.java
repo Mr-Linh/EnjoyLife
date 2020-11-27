@@ -15,10 +15,17 @@ public class UserLoginService {
         User user =null;
         try {
             user = userMapper.queryUserById(UserId);
-            if (user.getUState()!=0)
-                return "账号审核中。。";
+            if (user.getUState()==2)
+                return "账号审核中..";
+            if (user.getUState()==1){
+                return "账号状态异常..";
+            }
             if(user.getPassword().equals(Password)){
-                return "登录成功";
+                if(user.getUState()==3){
+                    return "审核不通过";
+                }else {
+                    return "登录成功";
+                }
             }else{
                 return "用户id或密码错误";
             }

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>我接受的</title>
+
+    <!--layui-->
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+    <script src="/layui/layui.js" charset="utf-8"></script>
+
+    <!--bootstrap-->
+    <link rel="stylesheet" href="/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script src="/bootstrap-3.3.7-dist/js/jquery-1.11.1.min.js"></script>
+    <script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/personalCenter.css">
+
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/index">EnjoyLife</a>
+                <a class="navbar-brand" href="#">委托相关</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav"></ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <div class="head_img_div"><img class="head_img" src="/img/icon/qq.png" alt="头像显示错误">
+                        </div>
+                    </li>
+                    <li class="dropdown">
+
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false" th:text="${userName}"><span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <!--                            <li><a href="#">账户信息</a></li>-->
+                            <!--                            <li><a href="#">个人信息</a></li>-->
+                            <!--                            <li><a href="#">账户余额</a></li>-->
+                            <!--                            <li role="separator" class="divider"></li>-->
+                            <li><a href="/logout">退出登录</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+    <div class="main-content">
+        <input id="msg" type="hidden" th:value="${msg}"/>
+        <!-- 左侧边 -->
+        <div class="left-side">
+            <ul>
+                <li>
+                    <a href="myPublish">我的发布</a>
+                </li>
+                <li>
+                    <a href="myReceipt">我接受的</a>
+                </li>
+            </ul>
+        </div>
+        <!-- 右边内容 -->
+        <div class="right-content">
+            <p class="navbar-brand" href="#">我的任务</p>
+            <div class="layui-tab">
+                <ul class="layui-tab-title">
+                    <li class="layui-this">进行中</li>
+                    <li>已完成</li>
+                    <li>全部</li>
+                </ul>
+                <div class="layui-tab-content" id="taskContent" style="background-color: #f2f2f2;">
+                    <div class="layui-tab-item layui-show">
+                        <div class="layui-row layui-col-space15" id="taskGoing">
+                            未找到符合条件的委托，快去<a href="/taskCenter">委托中心</a>看看吧！
+                        </div>
+                    </div>
+                    <div class="layui-tab-item">
+                        <div class="layui-row layui-col-space15" id="taskFinish">
+                            未找到符合条件的委托，快去<a href="/taskCenter">委托中心</a>看看吧！
+                        </div>
+                    </div>
+                    <div class="layui-tab-item">
+                        <div class="layui-row layui-col-space15" id="taskAll">
+                            未找到符合条件的委托，快去<a href="/taskCenter">委托中心</a>看看吧！
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    // var template1 = "<div class='layui-col-md12'><div class='layui-card'>" +
+    //     "<div class='layui-card-header'>" +
+    //     "<div class='layui-col-md4'>主题：[theme]</div>" +
+    //     "<div class='layui-col-md3'>编号：[taskId]</div>" +
+    //     "<div class='layui-col-md3'>类别：[category]</div>" +
+    //     // "<div class='layui-col-md2'>截止时间：[deadline]</div>"+
+    //     "<div class='layui-col-md2'><a href='/myReceiptDatail'><button type='button' class='layui-btn layui-btn-sm layui-btn-normal'>详情</button></div></a>" +
+    //     "</div>" +
+    //     "<div class='layui-card-body'>委托内容：[content]</div>" +
+    //     "</div></div>";
+    var template2 = "<div class='layui-col-md12'><div class='layui-card'>" +
+        "<div class='layui-card-header'>" +
+        "<div class='layui-col-md4'>主题：[theme]</div>" +
+        "<div class='layui-col-md3'>编号：[taskId]</div>" +
+        "<div class='layui-col-md3'>类别：[category]</div>" +
+        // "<div class='layui-col-md2'>截止时间：[deadline]</div>"+
+        "<div class='layui-col-md2'><a href='/myReceiptDetail'><button type='button' class='layui-btn layui-btn-sm layui-btn-normal'>详情</button></div></a>" +
+        "</div>" +
+        "<div class='layui-card-body'>委托内容：[content]</div>" +
+        "</div></div>";
+    var template3 = "<div class='layui-col-md12'><div class='layui-card'>" +
+        "<div class='layui-card-header'>" +
+        "<div class='layui-col-md4'>主题：[theme]</div>" +
+        "<div class='layui-col-md3'>编号：[taskId]</div>" +
+        "<div class='layui-col-md3'>类别：[category]</div>" +
+        // "<div class='layui-col-md2'>截止时间：[deadline]</div>"+
+        "<div class='layui-col-md2'><a href='/myReceiptDetail'><button type='button' class='layui-btn layui-btn-sm layui-btn-normal'>详情</button></div></a>" +
+        "</div>" +
+        "<div class='layui-card-body'>委托内容：[content]</div>" +
+        "</div></div>";
+    var template4 = "<div class='layui-col-md12'><div class='layui-card'>" +
+        "<div class='layui-card-header'>" +
+        "<div class='layui-col-md4'>主题：[theme]</div>" +
+        "<div class='layui-col-md3'>编号：[taskId]</div>" +
+        "<div class='layui-col-md3'>类别：[category]</div>" +
+        // "<div class='layui-col-md2'>截止时间：[deadline]</div>"+
+        "<div class='layui-col-md2'><a href='/myReceiptDetail'><button type='button' class='layui-btn layui-btn-sm layui-btn-normal'>详情</button></div></a>" +
+        "</div>" +
+        "<div class='layui-card-body'>委托内容：[content]</div>" +
+        "</div></div>";
+
+    // var addressListUrl1 = "/myReceiptListNew";
+    var addressListUrl2 = "/myReceiptListGoing";
+    var addressListUrl3 = "/myReceiptListFinish";
+    var addressListUrl4 = "/myReceiptListAll";
+    layui.use(['form', 'layedit', 'element'], function () {
+        var form = layui.form
+            , layer = layui.layer
+            , element = layui.element;
+        // layui.$.get(addressListUrl1, function (result) {
+        //     if (result.data.length != 0) {
+        //         layui.$("#taskNew").empty();
+        //     }
+        //     for (var index in result.data) {
+        //         var addr = result.data[index];
+        //         var td = template1.replace("[theme]", addr.theme)
+        //             .replace("[taskId]", addr.taskId)
+        //             .replace("[category]", addr.category1 + "  " + addr.category2)
+        //             // .replace("[deadline]", addr.deadline)
+        //             .replace("[content]", addr.content)
+        //             .replace("/myReceiptDatail", "/myReceiptDatail?id=" + addr.taskId);
+        //         var tdObj = layui.$(td);
+        //         layui.$("#taskNew").append(tdObj);
+        //     }
+        // });
+        layui.$.get(addressListUrl2, function (result) {
+            if (result.data.length != 0) {
+                layui.$("#taskGoing").empty();
+            }
+            for (var index in result.data) {
+                var addr = result.data[index];
+                var td = template2.replace("[theme]", addr.theme)
+                    .replace("[taskId]", addr.taskId)
+                    .replace("[category]", addr.category1 + "  " + addr.category2)
+                    // .replace("[deadline]", addr.deadline)
+                    .replace("[content]", addr.content)
+                    .replace("/myReceiptDetail", "/myReceiptDetail?id=" + addr.taskId);
+                var tdObj = layui.$(td);
+                layui.$("#taskGoing").append(tdObj);
+            }
+        });
+        layui.$.get(addressListUrl3, function (result) {
+
+            if (result.data.length != 0) {
+                layui.$("#taskFinish").empty();
+            }
+            for (var index in result.data) {
+                var addr = result.data[index];
+                var td = template3.replace("[theme]", addr.theme)
+                    .replace("[taskId]", addr.taskId)
+                    .replace("[category]", addr.category1 + "  " + addr.category2)
+                    // .replace("[deadline]", addr.deadline)
+                    .replace("[content]", addr.content)
+                    .replace("/myReceiptDetail", "/myReceiptDetail?id=" + addr.taskId);
+                var tdObj = layui.$(td);
+                layui.$("#taskFinish").append(tdObj);
+            }
+        });
+        layui.$.get(addressListUrl4, function (result) {
+            if (result.data.length != 0) {
+                layui.$("#taskAll").empty();
+            }
+            for (var index in result.data) {
+                var addr = result.data[index];
+                var td = template4.replace("[theme]", addr.theme)
+                    .replace("[taskId]", addr.taskId)
+                    .replace("[category]", addr.category1 + "  " + addr.category2)
+                    // .replace("[deadline]", addr.deadline)
+                    .replace("[msg]", addr.taskId)
+                    .replace("[content]", addr.content)
+                    .replace("/myReceiptDetail", "/myReceiptDetail?id=" + addr.taskId);
+                var tdObj = layui.$(td);
+                layui.$("#taskAll").append(tdObj);
+            }
+        });
+
+        if (layui.$("#msg").val() !== "") {
+            layer.alert(layui.$("#msg").val());
+        }
+        //触发事件
+        var active = {
+            tabAdd: function () {
+                //新增一个Tab项
+                element.tabAdd('demo', {
+                    title: '新选项' + (Math.random() * 1000 | 0) //用于演示
+                    , content: '内容' + (Math.random() * 1000 | 0)
+                    , id: new Date().getTime() //实际使用一般是规定好的id，这里以时间戳模拟下
+                })
+            }
+            , tabDelete: function (othis) {
+                //删除指定Tab项
+                element.tabDelete('demo', '44'); //删除：“商品管理”
+
+
+                othis.addClass('layui-btn-disabled');
+            }
+            , tabChange: function () {
+                //切换到指定Tab项
+                element.tabChange('demo', '22'); //切换到：用户管理
+            }
+        };
+
+        layui.$('.site-demo-active').on('click', function () {
+            var othis = layui.$(this), type = othis.data('type');
+            active[type] ? active[type].call(this, othis) : '';
+        });
+
+    });
+</script>
+</body>
+</html>

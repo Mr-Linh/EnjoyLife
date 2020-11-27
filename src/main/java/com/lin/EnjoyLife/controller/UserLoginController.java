@@ -24,6 +24,10 @@ public class UserLoginController {
             return "redirect:/login";
         }else{
             String s = userLoginService.UserLogin(UserId, Password);
+            if(s.equals("审核不通过")){
+                redirectAttributes.addFlashAttribute("msg","账号未审核通过，请修改信息后重新提交");
+                return "redirect:/checkWrongFixInfo?userId="+UserId;
+            }
             if (s.equals("登录成功")) {
                 redirectAttributes.addFlashAttribute("UserId", UserId);
                 httpSession.setAttribute("userId",UserId);

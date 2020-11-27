@@ -32,6 +32,21 @@ public class PublishTaskFinishController {
                               RedirectAttributes redirectAttributes) {
         Object userId = httpSession.getAttribute("userId");
         User user = publishTaskService.PublishTaskInit(userId.toString());
+        if (category1.equals("紧急")){
+            Integer uLevel = user.getULevel();
+            if(uLevel<3){
+                redirectAttributes.addFlashAttribute("msg", "账号等级不足3级，无法发布紧急委托！");
+                return "redirect:/publishTask";
+            }
+        }
+
+        Integer balance;
+        if(user.getBalance()<price){
+            redirectAttributes.addFlashAttribute("msg","账户余额不足,请充值！");
+            return "redirect:/publishTask";
+        }else {
+            balance = user.getBalance() - price;
+        }
 
         String date = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
         Integer integer = publishTaskService.queryForTask(date);
@@ -54,7 +69,7 @@ public class PublishTaskFinishController {
         task.setTState(0);
 
 
-        Boolean aBoolean = publishTaskService.AddTask(task);
+        Boolean aBoolean = publishTaskService.AddTask(task,user.getUserId(),balance);
         if (aBoolean) {
             redirectAttributes.addFlashAttribute("msg", "委托发布成功");
         } else {

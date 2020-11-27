@@ -19,7 +19,7 @@
             <h1>用户注册 <small>请填写真实的个人信息</small></h1>
         </div>
         <input id="msg" type="hidden" th:value="${msg}" />
-        <div class="content" style="display: flex">
+        <div class="content" style="display: flex;width: 700px;margin: auto;">
             <form class="layui-form" action="/registerFinish" method="post">
                 <div class="layui-card-header">账号信息</div>
                 <div class="layui-card-body">
@@ -101,7 +101,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">学历</label>
                         <div class="layui-input-inline">
-                            <select name="education" lay-filter="study">
+                            <select name="education" lay-filter="study" lay-verify="required" lay-reqtext="请选择学历">
                                 <option value="" selected=""></option>
                                 <option value="小学">小学</option>
                                 <option value="初中">初中</option>
@@ -226,10 +226,6 @@
         });
 
     });
-</script>
-<script>
-
-
 </script>
 
 </body>

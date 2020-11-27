@@ -5,6 +5,7 @@ import com.lin.EnjoyLife.service.AccountCheckService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
@@ -26,5 +27,35 @@ public class AccountCheckController {
         map.put("code", 0);
         map.put("data", users);
         return map;
+    }
+
+    @PostMapping("/accountCheckOption")
+    @ResponseBody
+    public String accountCheckOption(User data){
+        Boolean aBoolean;
+        try {
+             aBoolean = accountcheckService.accountCheckOption(data.getUserId());
+            if (aBoolean){
+                return "success";
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "failed";
+    }
+
+    @PostMapping("/accountCheckWrongOption")
+    @ResponseBody
+    public String accountCheckWrongOption(User data){
+        Boolean aBoolean;
+        try {
+            aBoolean = accountcheckService.accountCheckWrongOption(data.getUserId());
+            if (aBoolean){
+                return "success";
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "failed";
     }
 }

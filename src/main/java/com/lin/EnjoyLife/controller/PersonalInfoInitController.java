@@ -1,7 +1,7 @@
 package com.lin.EnjoyLife.controller;
 
 import com.lin.EnjoyLife.pojo.User;
-import com.lin.EnjoyLife.service.personalInfoService;
+import com.lin.EnjoyLife.service.PersonalInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class PersonalInfoInitController {
     @Autowired
-    personalInfoService personalInfoService;
+    PersonalInfoService personalInfoService;
 
     @GetMapping("/personalInfo")
     public String personalInfoInit(HttpSession httpSession,Model model){

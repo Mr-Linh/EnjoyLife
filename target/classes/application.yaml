@@ -8,4 +8,10 @@ spring:
 server:
   port: 8080
   session:
-    timeout: 7200
+    timeout: 144000
+
+    pagehelper:
+      helper-dialect: mysql
+      params: count=countSql
+      reasonable: true
+      support-methods-arguments: true

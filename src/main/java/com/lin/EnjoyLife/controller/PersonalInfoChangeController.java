@@ -1,9 +1,7 @@
 package com.lin.EnjoyLife.controller;
 
 import com.lin.EnjoyLife.pojo.User;
-import com.lin.EnjoyLife.service.personalInfoService;
-import jdk.nashorn.internal.ir.ReturnNode;
-import org.apache.logging.log4j.message.ReusableMessage;
+import com.lin.EnjoyLife.service.PersonalInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +13,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class PersonalInfoChangeController {
     @Autowired
-    personalInfoService personalInfoService;
+    PersonalInfoService personalInfoService;
 
     @PostMapping("/personalInfoChange")
     public String PersonalInfoChange(@RequestParam("sex") String sex,

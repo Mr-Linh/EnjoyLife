@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>委托详情</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/css/receiptTaskDetail.css">
+    <!--layui-->
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+    <script src="/layui/layui.js" charset="utf-8"></script>
+</head>
+<body>
+<div class="container">
+    <div class="text-center">
+
+        <div class="content" style="display: flex">
+            <form class="layui-form" action="">
+                <div style="padding: 20px; background-color: #F2F2F2;">
+                    <div class="page-header" style="text-align: center">
+                        <h1>委托详情页</h1>
+                    </div>
+                    <div class="layui-row layui-col-space15" style="padding-top: 20px">
+                        <div class="layui-col-md12">
+                            <div class="layui-card">
+                                <div class="layui-card-header">委托相关</div>
+                                <div class="layui-card-body">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">委托编号</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="taskId" class="layui-input" disabled="disabled" th:value="${task.taskId}">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">委托主题</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="taskTheme" class="layui-input" disabled="disabled" th:value="${task.theme}">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-inline">
+                                        <label class="layui-form-label">截止时间</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="taskTime" class="layui-input" disabled="disabled" th:value="${task.deadLine}">
+                                        </div>
+                                            <label class="layui-form-label">报酬</label>
+                                            <div class="layui-input-inline">
+                                                <input type="number" name="price" class="layui-input" disabled="disabled" th:value="${task.price}">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-md12">
+                            <div class="layui-card">
+                                <div class="layui-card-header">委托人相关</div>
+                                <div class="layui-card-body">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">发布者</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="taskPublisher" class="layui-input"
+                                                   disabled="disabled" th:value="${task.publisher}">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-inline">
+                                            <label class="layui-form-label">账号等级</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="uLevel" class="layui-input"
+                                                       disabled="disabled" th:value="${uLevel}">
+                                            </div>
+                                            <label class="layui-form-label">联系方式</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="tel" class="layui-input"
+                                                       disabled="disabled" th:value="${tel}">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-md12">
+                            <div class="layui-card">
+                                <div class="layui-card-header">详细内容</div>
+                                <div class="layui-card-body">
+                                    <div class="layui-form-item">
+                                        <div class="layui-inline">
+                                            <label class="layui-form-label">委托类型</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="category" class="layui-input"
+                                                       disabled="disabled" th:value="${task.category1 +'  '+task.category2}">
+                                            </div>
+                                            <label class="layui-form-label">委托难度</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="tLevel" class="layui-input"
+                                                       disabled="disabled"
+                                                       th:value="${task.TLevel}">
+                                            </div>
+                                        </div>
+                                        <div class="layui-inline">
+                                            <label class="layui-form-label">发布时间</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="publishTime" class="layui-input"
+                                                       disabled="disabled" th:value="${task.publishTime}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item layui-form-text">
+                                        <label class="layui-form-label">委托内容</label>
+                                        <div class="layui-input-block">
+                                            <textarea class="layui-textarea" name="content"
+                                                      disabled="disabled" th:text="${task.content}"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">特殊要求</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="special" class="layui-input" disabled="disabled" th:value="${task.special}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin-left: 200px">
+                            <a href="/taskCenter"><button type="button" class="layui-btn layui-btn-primary">返回</button></a>
+                            <a th:href="@{'/receiptTask?id='+${task.taskId}}"><button type="button" class="layui-btn layui-btn-danger" style="margin-left: 80px">接受委托</button></a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    layui.use('element', function () {
+        var $ = layui.jquery
+            , element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+
+        //触发事件
+        var active = {
+            setPercent: function () {
+                //设置50%进度
+                element.progress('demo', '50%')
+            }
+            , loading: function (othis) {
+                var DISABLED = 'layui-btn-disabled';
+                if (othis.hasClass(DISABLED)) return;
+
+                //模拟loading
+                var n = 0, timer = setInterval(function () {
+                    n = n + Math.random() * 10 | 0;
+                    if (n > 100) {
+                        n = 100;
+                        clearInterval(timer);
+                        othis.removeClass(DISABLED);
+                    }
+                    element.progress('demo', n + '%');
+                }, 300 + Math.random() * 1000);
+
+                othis.addClass(DISABLED);
+            }
+        };
+
+        $('.site-demo-active').on('click', function () {
+            var othis = $(this), type = $(this).data('type');
+            active[type] ? active[type].call(this, othis) : '';
+        });
+    });
+</script>
+<script>
+    layui.use(['form', 'layedit', 'laydate'], function () {
+        var form = layui.form
+            , layer = layui.layer
+            , layedit = layui.layedit
+            , laydate = layui.laydate;
+
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+        laydate.render({
+            elem: '#date1'
+        });
+
+        //自定义验证规则
+        form.verify({
+            title: function (value) {
+                if (value.length < 5) {
+                    return '标题至少得5个字符啊';
+                }
+            }
+            , pass: [
+                /^[\S]{6,12}$/
+                , '密码必须6到12位，且不能出现空格'
+            ]
+            , content: function (value) {
+                layedit.sync(editIndex);
+            }
+            , confirmPass: function (value) {
+                if (layui.$("input[name=password]").val() !== value)
+                    return '两次密码输入不一致！';
+            }
+            , realName: [
+                /^[\u4e00-\u9fa5]{2,4}$/
+                , '真实姓名2-4位汉字'
+            ]
+            , check: function () {
+                var checked = document.getElementById("realInfo");
+                if (checked.checked == false) {
+                    {
+                        return "请勾选协议";
+                    }
+                }
+            }
+        });
+
+        //监听提交
+        form.on('submit(demo1)', function (data) {
+            if (layui.$("input[name=identityNumber]").checked()) {
+                layer.alert(JSON.stringify(data.field), {
+                    title: '最终的提交信息'
+                })
+            }
+            return false;
+        });
+
+        //表单取值
+        layui.$('#LAY-component-form-getval').on('click', function () {
+            var data = form.val('example');
+            alert(JSON.stringify(data));
+        });
+
+    });
+</script>
+</body>
+</html>

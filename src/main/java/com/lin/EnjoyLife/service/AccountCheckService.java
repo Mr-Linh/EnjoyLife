@@ -35,4 +35,24 @@ public class AccountCheckService {
         }
         return users;
     }
+
+    public Boolean accountCheckOption(String UserId){
+        try {
+            Integer integer = userMapper.accountCheckOption(UserId,0);
+            return integer==1;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public Boolean accountCheckWrongOption(String UserId){
+        try {
+            Integer integer = userMapper.accountCheckOption(UserId,3);
+            return integer==1;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
