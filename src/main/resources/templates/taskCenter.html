@@ -44,39 +44,39 @@
                             <li class="dropdown-submenu">
                                 <a tabindex="-1" href="#" onclick="life();return false;">生活类别/Life</a>
                                 <ul class="dropdown-menu">
-                                    <li><a tabindex="-1" href="#" onclick="lifeHousework();return false;">家政</a></li>
+                                    <li><a tabindex="-1" href="#" onclick="lifeHousework();return false;">家政/Housework</a></li>
                                     <li class="divider"></li>
-                                    <li><a tabindex="-1" href="#" onclick="lifeReceive();return false;">代领</a></li>
+                                    <li><a tabindex="-1" href="#" onclick="lifeDrive();return false;">代驾/Drive</a></li>
                                     <li class="divider"></li>
-                                    <li><a tabindex="-1" href="#" onclick="lifeSend();return false;">代送</a></li>
+                                    <li><a tabindex="-1" href="#" onclick="lifeErrand();return false;">跑腿/Errand</a></li>
                                     <li class="divider"></li>
-                                    <li><a tabindex="-1" href="#" onclick="lifeOther();return false;">其他</a></li>
+                                    <li><a tabindex="-1" href="#" onclick="lifeOther();return false;">其他/Other</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown-submenu">
-                                <a tabindex="-1" href="#" onclick="study();return false;">学习类别/Study</a>
+                                <a tabindex="-1" href="#" onclick="consult();return false;">咨询类别/Consult</a>
                                 <ul class="dropdown-menu">
-                                    <li><a tabindex="-1" href="#" onclick="studyComputer();return false;">计算机</a></li>
+                                    <li><a tabindex="-1" href="#" onclick="consultCertificate();return false;">考证/Certificate</a></li>
                                     <li class="divider"></li>
-                                    <li><a tabindex="-1" href="#" onclick="studyMath();return false;">数学</a></li>
+                                    <li><a tabindex="-1" href="#" onclick="consultTechnology();return false;">技术/Technology</a></li>
                                     <li class="divider"></li>
-                                    <li><a tabindex="-1" href="#" onclick="studyEnglish();return false;">英语</a></li>
+                                    <li><a tabindex="-1" href="#" onclick="consultHumanity();return false;">人文/Humanity</a></li>
                                     <li class="divider"></li>
-                                    <li><a tabindex="-1" href="#" onclick="studyOther();return false;">其他</a></li>
+                                    <li><a tabindex="-1" href="#" onclick="consultOther();return false;">其他/Other</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown-submenu">
                                 <a tabindex="-1" href="#" onclick="entertainment();return false;">娱乐类别/Entertainment</a>
                                 <ul class="dropdown-menu">
-                                    <li><a tabindex="-1" href="#" onclick="entertainmentPlay();return false;">陪玩</a>
+                                    <li><a tabindex="-1" href="#" onclick="entertainmentExercise();return false;">运动/Exercise</a>
                                     </li>
                                     <li class="divider"></li>
-                                    <li><a tabindex="-1" href="#" onclick="entertainmentEat();return false;">陪吃</a></li>
+                                    <li><a tabindex="-1" href="#" onclick="entertainmentPhoto();return false;">摄影/Photo</a></li>
                                     <li class="divider"></li>
-                                    <li><a tabindex="-1" href="#" onclick="entertainmentChat();return false;">陪聊</a>
+                                    <li><a tabindex="-1" href="#" onclick="entertainmentMusic();return false;">音乐/Music</a>
                                     </li>
                                     <li class="divider"></li>
-                                    <li><a tabindex="-1" href="#" onclick="entertainmentOther();return false;">其他</a>
+                                    <li><a tabindex="-1" href="#" onclick="entertainmentOther();return false;">其他/Other</a>
                                     </li>
                                 </ul>
                             </li>
@@ -154,7 +154,7 @@
             </div>
         </div>
     </div>
-    <div id="demo"></div>
+<!--    <div id="demo"></div>-->
 </div>
 <script type="text/javascript">
     var template = "<div class='layui-col-md12'><div class='layui-card'>" +
@@ -261,8 +261,8 @@
         });
     }
 
-    function lifeReceive() {
-        var addressListUrl = "/taskCenter/Life/receive";
+    function lifeDrive() {
+        var addressListUrl = "/taskCenter/Life/drive";
         layui.$.get(addressListUrl, function (result) {
             layui.$("#taskList").empty();
             if (result.data.length != 0) {
@@ -284,8 +284,8 @@
         });
     }
 
-    function lifeSend() {
-        var addressListUrl = "/taskCenter/Life/send";
+    function lifeErrand() {
+        var addressListUrl = "/taskCenter/Life/errand";
         layui.$.get(addressListUrl, function (result) {
             layui.$("#taskList").empty();
             if (result.data.length != 0) {
@@ -330,8 +330,8 @@
         });
     }
 
-    function study() {
-        var addressListUrl = "/taskCenter/Study";
+    function consult() {
+        var addressListUrl = "/taskCenter/Consult";
         layui.$.get(addressListUrl, function (result) {
             layui.$("#taskList").empty();
             if (result.data.length != 0) {
@@ -353,8 +353,8 @@
         });
     }
 
-    function studyComputer() {
-        var addressListUrl = "/taskCenter/Study/computer";
+    function consultCertificate() {
+        var addressListUrl = "/taskCenter/Consult/certificate";
         layui.$.get(addressListUrl, function (result) {
             layui.$("#taskList").empty();
             if (result.data.length != 0) {
@@ -376,8 +376,8 @@
         });
     }
 
-    function studyMath() {
-        var addressListUrl = "/taskCenter/Study/math";
+    function consultTechnology() {
+        var addressListUrl = "/taskCenter/Consult/technology";
         layui.$.get(addressListUrl, function (result) {
             layui.$("#taskList").empty();
             if (result.data.length != 0) {
@@ -399,8 +399,8 @@
         });
     }
 
-    function studyEnglish() {
-        var addressListUrl = "/taskCenter/Study/english";
+    function consultHumanity() {
+        var addressListUrl = "/taskCenter/Consult/humanity";
         layui.$.get(addressListUrl, function (result) {
             layui.$("#taskList").empty();
             if (result.data.length != 0) {
@@ -422,8 +422,8 @@
         });
     }
 
-    function studyOther() {
-        var addressListUrl = "/taskCenter/Study/other";
+    function consultOther() {
+        var addressListUrl = "/taskCenter/Consult/other";
         layui.$.get(addressListUrl, function (result) {
             layui.$("#taskList").empty();
             if (result.data.length != 0) {
@@ -468,8 +468,8 @@
         });
     }
 
-    function entertainmentPlay() {
-        var addressListUrl = "/taskCenter/Entertainment/play";
+    function entertainmentExercise() {
+        var addressListUrl = "/taskCenter/Entertainment/exercise";
         layui.$.get(addressListUrl, function (result) {
             layui.$("#taskList").empty();
             if (result.data.length != 0) {
@@ -491,8 +491,8 @@
         });
     }
 
-    function entertainmentEat() {
-        var addressListUrl = "/taskCenter/Entertainment/eat";
+    function entertainmentPhoto() {
+        var addressListUrl = "/taskCenter/Entertainment/photo";
         layui.$.get(addressListUrl, function (result) {
             layui.$("#taskList").empty();
             if (result.data.length != 0) {
@@ -514,8 +514,8 @@
         });
     }
 
-    function entertainmentChat() {
-        var addressListUrl = "/taskCenter/Entertainment/chat";
+    function entertainmentMusic() {
+        var addressListUrl = "/taskCenter/Entertainment/music";
         layui.$.get(addressListUrl, function (result) {
             layui.$("#taskList").empty();
             if (result.data.length != 0) {
@@ -611,33 +611,33 @@
             }
         });
 
-        //自定义样式
-        laypage.render({
-            elem: 'demo'
-            , count: 100
-            , theme: '#1E9FFF'
-        });
+        // //自定义样式
+        // laypage.render({
+        //     elem: 'demo'
+        //     , count: 100
+        //     , theme: '#1E9FFF'
+        // });
 
 
         //将一段数组分页展示
 
 
         //调用分页
-        laypage.render({
-            elem: 'demo20'
-            , count: data.length
-            , jump: function (obj) {
-                //模拟渲染
-                document.getElementById('biuuu_city_list').innerHTML = function () {
-                    var arr = []
-                        , thisData = data.concat().splice(obj.curr * obj.limit - obj.limit, obj.limit);
-                    layui.each(thisData, function (index, item) {
-                        arr.push('<li>' + item + '</li>');
-                    });
-                    return arr.join('');
-                }();
-            }
-        });
+        // laypage.render({
+        //     elem: 'demo20'
+        //     , count: data.length
+        //     , jump: function (obj) {
+        //         //模拟渲染
+        //         document.getElementById('biuuu_city_list').innerHTML = function () {
+        //             var arr = []
+        //                 , thisData = data.concat().splice(obj.curr * obj.limit - obj.limit, obj.limit);
+        //             layui.each(thisData, function (index, item) {
+        //                 arr.push('<li>' + item + '</li>');
+        //             });
+        //             return arr.join('');
+        //         }();
+        //     }
+        // });
 
     });
 </script>

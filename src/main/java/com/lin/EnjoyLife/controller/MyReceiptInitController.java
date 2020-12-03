@@ -28,21 +28,10 @@ public class MyReceiptInitController {
 
         return "myReceipt";
     }
-    @GetMapping("myReceiptListNew")
-    @ResponseBody
-    public Map<Object, Object> initMyPublishList1(HttpSession httpSession){
-        Object userId = httpSession.getAttribute("userId");
-
-        Map<Object, Object> map = new HashMap<>();
-        List<Task> tasks=myReceiptService.initMyReceiptList1(userId.toString());
-        map.put("data",tasks);
-
-        return map;
-    }
 
     @GetMapping("/myReceiptListGoing")
     @ResponseBody
-    public Map<Object, Object> initMyPublishList2(HttpSession httpSession){
+    public Map<Object, Object> initMyReceiptList2(HttpSession httpSession){
         Object userId = httpSession.getAttribute("userId");
 
         Map<Object, Object> map = new HashMap<>();
@@ -54,7 +43,7 @@ public class MyReceiptInitController {
 
     @GetMapping("/myReceiptListFinish")
     @ResponseBody
-    public Map<Object, Object> initMyPublishList3(HttpSession httpSession){
+    public Map<Object, Object> initMyReceiptList3(HttpSession httpSession){
         Object userId = httpSession.getAttribute("userId");
 
         Map<Object, Object> map = new HashMap<>();
@@ -66,7 +55,7 @@ public class MyReceiptInitController {
 
     @GetMapping("/myReceiptListAll")
     @ResponseBody
-    public Map<Object, Object> initMyPublishList4(HttpSession httpSession){
+    public Map<Object, Object> initMyReceiptList4(HttpSession httpSession){
         Object userId = httpSession.getAttribute("userId");
 
         Map<Object, Object> map = new HashMap<>();

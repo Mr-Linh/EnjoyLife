@@ -9,21 +9,15 @@
 </head>
 <body>
 <div class="layui-row" style="padding-top: 20px;padding-left: 20px;padding-right: 20px;">
+    <div><h2>账号审核</h2></div>
     <div class="layui-form">
-        <div class="demoTable">
-            按用户id搜索：
-            <div class="layui-inline">
-                <input class="layui-input" id="demoReload" autocomplete="off">
-            </div>
-            <button class="layui-btn" data-type="reload">搜索</button>
-        </div>
-<!--        <script type="text/html" id="toolbarDemo">-->
-<!--            <div class="layui-btn-container">-->
-<!--                <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>-->
-<!--                <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>-->
-<!--                <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>-->
+<!--        <div class="demoTable">-->
+<!--            按用户id搜索：-->
+<!--            <div class="layui-inline">-->
+<!--                <input class="layui-input" name="id" id="demoReload" autocomplete="off">-->
 <!--            </div>-->
-<!--        </script>-->
+<!--            <div class="layui-btn" data-type="reload" id="accountSearch">搜索</div>-->
+<!--        </div>-->
 
         <table class="layui-table" id="test" lay-filter="test"></table>
         <script type="text/html" id="barDemo">
@@ -35,21 +29,21 @@
 
 
 <script>
-    layui.use(['table', 'layer', 'form'], function () {
-        var table = layui.table;
-        var layer = layui.layer;
-        var form = layui.form;
+    layui.use(['table', 'layer', 'form', 'laypage'], function () {
+        var table = layui.table,
+            layer = layui.layer,
+            laypage = layui.laypage,
+            form = layui.form;
 
 
         table.render({
             elem: '#test'
+            , url: '/accountCheckFun'
+            , page: true
+            , limit: 5
+            , limits: [5, 10, 20]
             , height: '550'
             , cellMinWidth: 80
-            , page: 'true'
-            , count: 10
-            , limits: [10, 20, 50]
-            , limit: 10
-            , url: '/accountCheckFun'
             , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
             , defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
                 title: '提示'
@@ -76,29 +70,7 @@
             ]
             , id: 'testReload'
         });
-        // //头工具栏事件
-        // table.on('toolbar(test)', function (obj) {
-        //     var checkStatus = table.checkStatus(obj.config.id);
-        //     switch (obj.event) {
-        //         case 'getCheckData':
-        //             var data = checkStatus.data;
-        //             layer.alert(JSON.stringify(data));
-        //             break;
-        //         case 'getCheckLength':
-        //             var data = checkStatus.data;
-        //             layer.msg('选中了：' + data.length + ' 个');
-        //             break;
-        //         case 'isAll':
-        //             layer.msg(checkStatus.isAll ? '全选' : '未全选');
-        //             break;
-        //
-        //         //自定义头工具栏右侧图标 - 提示
-        //         case 'LAYTABLE_TIPS':
-        //             layer.alert('这是工具栏右侧自定义的一个图标按钮');
-        //             break;
-        //     }
-        // });
-
+        console.log(table.data);
         //监听行工具事件
         table.on('tool(test)', function (obj) {
             var data = obj.data;
@@ -139,30 +111,31 @@
                 })
             }
         });
-        //
-        // var $ = layui.$, active =
-        //     {
-        //         reload: function () {
-        //             var demoReload = layui.$('#demoReload').val();//获取输入框的值
-        //             //执行重载
-        //             table.reload('test',
-        //                 {
-        //                     page:
-        //                         {
-        //                             curr: 1 //重新从第 1 页开始
-        //                         }
-        //                     , where: { name: demoReload}//这里传参  向后台
-        //                     , url: '/accountCheckSearchById'//后台做模糊搜索接口路径
-        //                     , method: 'post'
-        //                 });
-        //         }
-        //     };
-        // //这个是用于创建点击事件的实例
-        // layui.$('.demoTable .layui-btn').on('click', function ()
-        // {
-        //     var type = $(this).data('type');
-        //     active[type] ? active[type].call(this) : '';
-        // });
+
+        var $ = layui.$, active = {
+            reload: function(){
+                var demoReload = $('#demoReload');
+
+                //执行重载
+                table.reload('testReload', {
+                    url: '/accountCheckSearchById'
+                    , method: 'post'
+                    , page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                    ,where: {
+                        key: {
+                            id: demoReload.val()
+                        }
+                    }
+                }, 'data');
+            }
+        };
+
+        $('#accountSearch').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
     });
 </script>
 </body>

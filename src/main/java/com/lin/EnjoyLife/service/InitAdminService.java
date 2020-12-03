@@ -1,6 +1,7 @@
 package com.lin.EnjoyLife.service;
 
 import com.lin.EnjoyLife.mapper.PageViewMapper;
+import com.lin.EnjoyLife.mapper.TaskMapper;
 import com.lin.EnjoyLife.mapper.UserMapper;
 import com.lin.EnjoyLife.pojo.PageView;
 import com.lin.EnjoyLife.pojo.User;
@@ -16,6 +17,8 @@ public class InitAdminService {
     PageViewMapper pageViewMapper;
     @Autowired
     UserMapper userMapper;
+    @Autowired
+    TaskMapper taskMapper;
 
 
     public PageView searchByPid(Integer pid){
@@ -26,6 +29,16 @@ public class InitAdminService {
             e.printStackTrace();
         }
         return pageView;
+    }
+
+    public Integer taskTotal(){
+        Integer integer = 0;
+        try {
+            integer = taskMapper.taskTotal();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return integer;
     }
 
     public List<User> queryForAllUsers(){

@@ -16,7 +16,7 @@
     <div class="text-center">
 
         <div class="content" style="display: flex">
-            <form class="layui-form" action="">
+            <form class="layui-form">
                 <div style="padding: 20px; background-color: #F2F2F2;">
                     <div class="page-header" style="text-align: center">
                         <h1>委托详情页</h1>
@@ -30,7 +30,9 @@
                                     <div class="layui-form-item">
                                         <label class="layui-form-label">委托编号</label>
                                         <div class="layui-input-block">
-                                            <input type="text" name="taskId" class="layui-input" disabled="disabled"
+                                            <input type="text" class="layui-input" disabled="disabled"
+                                                   th:value="${task.taskId}">
+                                            <input type="hidden" name="taskId" class="layui-input"
                                                    th:value="${task.taskId}">
                                         </div>
                                     </div>
@@ -107,11 +109,18 @@
                                                        th:value="${task.TLevel}">
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="layui-form-item">
                                         <div class="layui-inline">
                                             <label class="layui-form-label">发布时间</label>
                                             <div class="layui-input-inline">
                                                 <input type="text" name="publishTime" class="layui-input"
                                                        disabled="disabled" th:value="${task.publishTime}">
+                                            </div>
+                                            <label class="layui-form-label">委托状态</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="taskState" class="layui-input"
+                                                       disabled="disabled" th:value="${tState}">
                                             </div>
                                         </div>
                                     </div>
@@ -129,6 +138,29 @@
                                                    th:value="${task.special}">
                                         </div>
                                     </div>
+                                    <div th:if="${task.TState==7 || task.TState==8 || task.TState==9 || task.TState==10}">
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">申诉理由</label>
+                                            <div class="layui-input-block">
+                                                <input type="text" name="appealReason" class="layui-input" disabled="disabled"
+                                                       th:value="${task.appealReason}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div th:if="${score le 5}">
+                                        <input type="hidden" name="score" class="layui-input" id="score"
+                                               th:value="${score}">
+                                        <div th:if="${score eq 4.99}" class="layui-form-item">
+                                            <label class="layui-form-label">星级评价</label>
+                                            <div class="layui-input-block">
+                                                <input class="layui-input" th:value="委托者还未作出评价" disabled="disabled">
+                                            </div>
+                                        </div>
+                                        <div th:if="${score ne 4.99}">
+                                            <label class="layui-form-label">星级评价</label>
+                                            <div id="scoreSubmit"></div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -136,16 +168,37 @@
                             <a href="/myPublish">
                                 <button type="button" class="layui-btn layui-btn-primary">返回</button>
                             </a>
-                            <a th:href="@{'/undoTask?id='+${task.taskId}}" th:if="${task.TState} eq 0"><button type="button" class="layui-btn layui-btn-danger" style="margin-left: 80px">撤销委托
-                            </button></a>
-                            <a th:href="@{'/contactExecutor?id='+${task.taskId}}" th:if="${task.TState} eq 1"><button type="button" class="layui-btn layui-btn-normal" style="margin-left: 80px">联系执行者
-                            </button></a>
-                            <a th:href="@{'/confirmFinish?id='+${task.taskId}}" th:if="${task.TState} eq 5"><button type="button" class="layui-btn layui-btn-primary" style="margin-left: 80px">确认完成
-                            </button></a>
-                            <a href="#" th:if="${task.TState} eq 5"><button type="button" class="layui-btn layui-btn-danger" style="margin-left: 80px">去申诉
-                            </button></a>
-                            <a href="#" th:if="${task.TState} eq 2"><button type="button" class="layui-btn layui-btn-warm" style="margin-left: 80px">去评价
-                            </button></a>
+                            <a th:href="@{'/undoTask?id='+${task.taskId}}"
+                               th:if="${task.TState eq 0 || task.TState eq 1}">
+                                <button type="button" class="layui-btn layui-btn-danger" style="margin-left: 80px">撤销委托
+                                </button>
+                            </a>
+                            <a th:href="@{'/contactExecutor?id='+${task.taskId}}" th:if="${task.TState} eq 4">
+                                <button type="button" class="layui-btn layui-btn-normal" style="margin-left: 80px">联系执行者
+                                </button>
+                            </a>
+                            <a th:href="@{'/confirmFinish?id='+${task.taskId}}" th:if="${task.TState} eq 5">
+                                <button type="button" class="layui-btn layui-btn-primary" style="margin-left: 80px">确认完成
+                                </button>
+                            </a>
+                            <a th:href="@{'/addAppealReason?id='+${task.taskId}}" th:if="${task.TState} eq 5">
+                                <button type="button" class="layui-btn layui-btn-danger" style="margin-left: 80px">去申诉
+                                </button>
+                            </a>
+                            <a th:href="@{'/undoComplain?id='+${task.taskId}}" th:if="${task.TState} eq 7">
+                                <button type="button" class="layui-btn layui-btn-danger" style="margin-left: 80px">撤回申诉
+                                </button>
+                            </a>
+                            <a th:href="@{'/giveScore?id='+${task.taskId}}"
+                               th:if="${(task.TState eq 6 || task.TState eq 8 || task.TState eq 9 || task.TState eq 10)  and task.score eq 4.99}">
+                                <button type="button" class="layui-btn layui-btn-warm" style="margin-left: 80px">去评价
+                                </button>
+                            </a>
+                            <a href="#"
+                               th:if="${(task.TState eq 6 || task.TState eq 8 || task.TState eq 9 || task.TState eq 10)  and task.score ne 4.99}">
+                                <button type="button" class="layui-btn layui-btn-warm" style="margin-left: 80px">已评价
+                                </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -190,11 +243,22 @@
     });
 </script>
 <script>
-    layui.use(['form', 'layedit', 'laydate'], function () {
+    layui.use(['form', 'layedit', 'laydate', 'rate'], function () {
         var form = layui.form
             , layer = layui.layer
             , layedit = layui.layedit
-            , laydate = layui.laydate;
+            , laydate = layui.laydate
+            , rate = layui.rate;
+
+        var score = parseFloat(layui.$("#score").val());
+        console.log("score: " + score);
+        rate.render({
+            elem: '#scoreSubmit'  //绑定元素
+            , value: score
+            , text: true
+            , half: true
+            , readonly: true
+        });
 
         //日期
         laydate.render({

@@ -248,7 +248,7 @@ function btnChange(index,flag,speed){
     if(box02_flag){
         //第二屏动画
         var timer = setTimeout(addActive,1000);
-        box02_timer = setInterval(boxTow,500);
+        box02_timer = setInterval(boxTow,200);
     }
 }
 

@@ -9,22 +9,22 @@ layui.use('form', function () {
             if (data.value == "生活") {
                 layui.$('#category2').html('<option value="">请选择分类</option>');
                 layui.$('#category2').append(new Option("家政", "家政"));
-                layui.$('#category2').append(new Option("代领", "代领"));
-                layui.$('#category2').append(new Option("代送", "代送"));
+                layui.$('#category2').append(new Option("代驾", "代驾"));
+                layui.$('#category2').append(new Option("跑腿", "跑腿"));
                 layui.$('#category2').append(new Option("其他", "其他"));
             }
-            else if (data.value == "学习") {
+            else if (data.value == "咨询") {
                 layui.$('#category2').html('<option value="">请选择分类</option>');
-                layui.$('#category2').append(new Option("计算机", "计算机"));
-                layui.$('#category2').append(new Option("数学", "数学"));
-                layui.$('#category2').append(new Option("英语", "英语"));
+                layui.$('#category2').append(new Option("考证", "考证"));
+                layui.$('#category2').append(new Option("技术", "技术"));
+                layui.$('#category2').append(new Option("人文", "人文"));
                 layui.$('#category2').append(new Option("其他", "其他"));
             }
             else if (data.value == "娱乐") {
                 layui.$('#category2').html('<option value="">请选择分类</option>');
-                layui.$('#category2').append(new Option("陪玩", "陪玩"));
-                layui.$('#category2').append(new Option("陪吃", "陪吃"));
-                layui.$('#category2').append(new Option("陪聊", "陪聊"));
+                layui.$('#category2').append(new Option("运动", "运动"));
+                layui.$('#category2').append(new Option("摄影", "摄影"));
+                layui.$('#category2').append(new Option("音乐", "音乐"));
                 layui.$('#category2').append(new Option("其他", "其他"));
             }
             else if (data.value == "紧急") {

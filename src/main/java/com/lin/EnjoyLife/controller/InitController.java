@@ -1,9 +1,5 @@
 package com.lin.EnjoyLife.controller;
 
-import com.lin.EnjoyLife.mapper.UserMapper;
-import com.lin.EnjoyLife.pojo.User;
-import com.lin.EnjoyLife.service.UserLoginService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -50,6 +46,11 @@ public class InitController {
         return "accountCheck";
     }
 
+    @GetMapping("/taskCheck")
+    public String taskCheck(){
+        return "taskCheck";
+    }
+
     @GetMapping("/userActivity")
     public String userActivity() {
         return "userActivity";
@@ -65,15 +66,9 @@ public class InitController {
         return "receiptTaskDetail";
     }
 
-    @GetMapping("/lifeTask")
-    public String lifeTask() {
-        return "lifeTask";
+    @GetMapping("/taskComplainDeal")
+    public String taskComplainDeal() {
+        return "taskComplainDeal";
     }
-
-//    @GetMapping("/taskCenter")
-//    public String taskCenter() {
-//        return "taskCenter";
-//    }
-
 
 }

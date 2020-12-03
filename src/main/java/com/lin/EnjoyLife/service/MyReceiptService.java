@@ -26,16 +26,6 @@ public class MyReceiptService {
         return user;
     }
 
-    public List<Task> initMyReceiptList1(String executor){
-        List<Task> tasks = null;
-        try{
-            tasks=taskMapper.queryTaskByExecutor1(executor);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return tasks;
-    }
-
     public List<Task> initMyReceiptList2(String executor){
         List<Task> tasks = null;
         try{

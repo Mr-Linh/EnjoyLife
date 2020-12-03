@@ -41,4 +41,16 @@ public class ReceiptTaskService {
 
         return false;
     }
+
+    public boolean receiptTaskCheck(String taskId){
+
+        try {
+            Task task = taskMapper.queryForTaskByTaskId(taskId);
+            return task.getTState() == 1;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return false;
+    }
 }

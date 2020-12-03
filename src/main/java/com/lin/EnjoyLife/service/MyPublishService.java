@@ -7,6 +7,9 @@ import com.lin.EnjoyLife.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 @Service
@@ -74,6 +77,26 @@ public class MyPublishService {
             e.printStackTrace();
         }
         return task;
+    }
+
+    public Boolean myPublicCheckGoing(String userId){
+        String date = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+        List<Task> tasks=new ArrayList<>();
+        List<Task> tasks1 = taskMapper.queryTaskByPublisher2(userId);
+        for(Task task:tasks1){
+            if(task.getTState()==4){
+                if(date.compareTo(task.getDeadLine().toString())>0){
+                    taskMapper.discardTask(task.getTaskId());
+                    User user = userMapper.queryUserById(task.getPublisher());
+                    int balance=user.getBalance()+task.getPrice();
+                    if(task.getCategory1().equals("紧急")){
+                        balance+=200;
+                    }
+                    Integer integer = userMapper.updateUserBalance(user.getUserId(), balance);
+                }
+            }
+        }
+        return true;
     }
 
 }

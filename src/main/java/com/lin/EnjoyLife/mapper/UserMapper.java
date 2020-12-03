@@ -19,6 +19,9 @@ public interface UserMapper {
     @Select("select * from user where UState=2")
     List<User> accountCheck();
 
+    @Select("select * from user where UState=2 limit #{offset},#{size}")
+    List<User> accountCheckPage(@Param("offset") Integer offset, @Param("size") Integer size);
+
     @Select("select * from user where UserId = #{UserId}")
     User queryUserById(@Param("UserId") String UserId);
 
@@ -26,7 +29,7 @@ public interface UserMapper {
     Integer addUser(User user);
 
     @Update("update user set RealName=#{RealName},Sex=#{Sex},Age=#{Age},IdentityNumber=#{IdentityNumber},Tel=#{Tel},Email=#{Email},Address=#{Address},Education=#{Education},Profession=#{Profession},UState=2 where UserId=#{UserId}")
-    Integer checkWrongFixInfo(@Param("UserId") String UserId,@Param("RealName") String RealName,@Param("Sex") String Sex,@Param("Age") Integer Age,@Param("IdentityNumber") String IdentityNumber,@Param("Tel") String Tel,@Param("Email") String Email,@Param("Address") String Address,@Param("Education") String Education,@Param("Profession") String Profession);
+    Integer checkWrongFixInfo(@Param("UserId") String UserId, @Param("RealName") String RealName, @Param("Sex") String Sex, @Param("Age") Integer Age, @Param("IdentityNumber") String IdentityNumber, @Param("Tel") String Tel, @Param("Email") String Email, @Param("Address") String Address, @Param("Education") String Education, @Param("Profession") String Profession);
 
     @Update("update user set Password=#{Password} where UserId=#{UserId}")
     Integer updateUserPassword(@Param("UserId") String UserId, @Param("Password") String Password);
@@ -49,9 +52,12 @@ public interface UserMapper {
     @Update("update user set UserName=#{UserName},Password=#{Password} where UserId=#{UserId}")
     Integer updateUserNameAndPassword(@Param("UserId") String UserId, @Param("UserName") String UserName, @Param("Password") String Password);
 
-    @Select("select * from user where UState=2 and concat(UserId) like '%' || 'UserId' || '%' ")
+    @Select("select * from user where UState=2 and concat(UserId) like '%' || 'UserId' || '%'")
     List<User> accountCheckSearchById(@Param("UserId") String userId);
 
+    @Select("select * from user where UState=2 and concat(UserId) like '%' || 'UserId' || '%' limit #{offset},#{size}")
+    List<User> accountCheckSearchByIdPage(@Param("UserId") String userId, @Param("offset") Integer offset, @Param("size") Integer size);
+
     @Update("update user set UState=#{UState} where UserId=#{UserId}")
-    Integer accountCheckOption(@Param("UserId") String UserId,@Param("UState") Integer UState);
+    Integer accountCheckOption(@Param("UserId") String UserId, @Param("UState") Integer UState);
 }

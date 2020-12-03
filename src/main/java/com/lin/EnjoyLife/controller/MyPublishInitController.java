@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +25,10 @@ public class MyPublishInitController {
     public String initMyPublish(HttpSession httpSession, Model model){
         Object userId = httpSession.getAttribute("userId");
         User user = myPublishService.initMyPublish(userId.toString());
+
+        myPublishService.myPublicCheckGoing(userId.toString());
+
+
         model.addAttribute("userId",user.getUserId());
         model.addAttribute("userName",user.getUserName());
 

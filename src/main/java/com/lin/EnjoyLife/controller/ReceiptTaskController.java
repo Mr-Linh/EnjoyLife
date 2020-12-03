@@ -25,12 +25,10 @@ public class ReceiptTaskController {
             redirectAttributes.addFlashAttribute("msg","不能接受本人发布的委托！");
             return "redirect:/taskCenter";
         }
-        if(task.getCategory1().equals("紧急")){
-            User user = receiptTaskService.queryByUserId(userId);
-            if(user.getULevel()<3){
-                redirectAttributes.addFlashAttribute("mag","账号等级3级以上才能接受紧急委托！");
-                return "redirect:/taskCenter";
-            }
+        boolean b = receiptTaskService.receiptTaskCheck(taskId);
+        if(b==false){
+            redirectAttributes.addFlashAttribute("msg","委托已被他人接受！");
+            return "redirect:/taskCenter";
         }
         boolean aBoolean = receiptTaskService.receiptTaskUpdate(taskId, userId);
 

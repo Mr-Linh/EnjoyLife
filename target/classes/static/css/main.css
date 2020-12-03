@@ -349,7 +349,7 @@ body{
 }
 
 .github_a{
-    background-color: #42c9a3;
+    background-color: #EAC251;
 }
 
 
@@ -384,10 +384,10 @@ body{
 }
 
 .weibo_a{
-    background-color: #EAC251;
+    background-color: #42c9a3;
 }
 .weibo_a .weibo_icon{
-    background: url('../img/icon/weibo.png');
+    background: url('../img/icon/taskCenter2.png') no-repeat;
     border-radius: 25px;
     display: block;
     width: 50px;
@@ -404,7 +404,41 @@ body{
 }
 
 .blog_a .blog_icon{
-    background: url('../img/icon/blog.png');
+    background: url('../img/icon/personalCenter2.png');
+    display: block;
+    width: 50px;
+    height: 50px;
+    position: relative;
+    background-size: cover;
+    -moz-background-size: cover;
+    left: 5px;
+    top: -5px;
+}
+
+.normalTask_icon{
+    background: url('../img/icon/publishTask2.png') no-repeat;
+    display: block;
+    width: 50px;
+    height: 50px;
+    position: relative;
+    background-size: cover;
+    -moz-background-size: cover;
+    left: 5px;
+    top: -5px;
+}
+.emergencyTask_icon{
+    background: url('../img/icon/emergency2.png');
+    display: block;
+    width: 50px;
+    height: 50px;
+    position: relative;
+    background-size: cover;
+    -moz-background-size: cover;
+    left: 5px;
+    top: -5px;
+}
+.myPublish_icon{
+    background: url('../img/icon/myPublish2.png');
     display: block;
     width: 50px;
     height: 50px;
@@ -498,10 +532,15 @@ body{
     left: 10%;
     position: absolute;
     z-index: 2;
+    top: 18%;
 }
 
-.box_content{
-    top: 18%;
+.box_content2{
+    width: 60%;
+    left: 6%;
+    position: absolute;
+    z-index: 2;
+    top: 12%;
 }
 
 .shuxian{
@@ -511,8 +550,8 @@ body{
 }
 
 #box02_text{
-    width: 50%;
-    min-width: 400px;
+    width: 45%;
+    min-width: 300px;
     float: left;
     overflow: hidden;
     cursor: pointer;
@@ -676,11 +715,19 @@ body{
     overflow: hidden;
 }
 
+.box04_label{
+    width:360px;
+    height: 80px;
+    margin:auto;
+    background-color: #0d86c4;
+    border: #ffffff 1px solid;
+}
+
 .box04_title{
     font-size: 25px;
     font-weight: lighter;
     text-align: center;
-    color: #ffffff;
+    color: #FF5722;
 }
 
 
@@ -1079,7 +1126,7 @@ body{
     display: none;
 }
 
-@media screen and (max-width: 1100px){
+@media screen and (max-width: 700px){
     .head{
         height: 70px
     }
@@ -1128,7 +1175,7 @@ body{
 
     #bar_container{
         padding-top: 150px;
-        height: 400px;
+        height: 500px;
     }
 
     .box03_content .right_div,.box03_content .left_div{
@@ -1194,7 +1241,7 @@ body{
     }
 }
 
-@media screen and (max-width: 700px){
+@media screen and (max-width: 300px){
     .head{
         height: 3rem;
     }

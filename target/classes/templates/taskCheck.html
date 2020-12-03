@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>委托审核</title>
+    <!--layui-->
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+    <script src="/layui/layui.js" charset="utf-8"></script>
+</head>
+<body>
+<div class="layui-row" style="padding-top: 20px;padding-left: 20px;padding-right: 20px;">
+    <div><h2>委托审核</h2></div>
+    <div class="layui-form">
+        <!--        <div class="demoTable">-->
+        <!--            按用户id搜索：-->
+        <!--            <div class="layui-inline">-->
+        <!--                <input class="layui-input" name="id" id="demoReload" autocomplete="off">-->
+        <!--            </div>-->
+        <!--            <div class="layui-btn" data-type="reload" id="accountSearch">搜索</div>-->
+        <!--        </div>-->
+
+        <table class="layui-table" id="test" lay-filter="test"></table>
+        <script type="text/html" id="barDemo">
+            <a class="layui-btn layui-btn-xs" lay-event="check">通过</a>
+            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="wrong">不通过</a>
+        </script>
+    </div>
+</div>
+
+
+<script>
+    layui.use(['table', 'layer', 'form', 'laypage'], function () {
+        var table = layui.table,
+            layer = layui.layer,
+            laypage = layui.laypage,
+            form = layui.form;
+
+
+        table.render({
+            elem: '#test'
+            , url: '/taskCheckFun'
+            , page: true
+            , limit: 5
+            , limits: [5, 10, 20]
+            , height: '550'
+            , cellMinWidth: 80
+            , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+            , defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
+                title: '提示'
+                , layEvent: 'LAYTABLE_TIPS'
+                , icon: 'layui-icon-tips'
+            }]
+            , title: '用户账号申请表'
+            , cols: [
+                [
+                    {field: 'taskId', width: 130, title: '委托id', sort: true, fixed: 'true'}
+                    , {field: 'category1', width: 100, title: '分类1', sort: true}
+                    , {field: 'category2', width: 125, title: '分类2', sort: true}
+                    , {field: 'theme', width: 100, title: '主题'}
+                    , {field: 'content', width: 80, title: '内容'}
+                    , {field: 'special', width: 80, title: '特殊要求'}
+                    , {field: 'publishTime', width: 150, title: '提交时间',sort: true}
+                    , {field: 'deadLine', width: 150, title: '截止时间',sort: true}
+                    , {field: 'tlevel', width: 150, title: '难度',sort: true}
+                    , {field: 'price', width: 110, title: '薪酬',sort: true}
+                    , {field: 'publisher', width: 230, title: '发布者id'}
+                    , {fixed: 'right', width: 150, align: 'center', toolbar: '#barDemo'}
+                ]
+            ]
+            , id: 'testReload'
+        });
+        console.log(table.data);
+        //监听行工具事件
+        table.on('tool(test)', function (obj) {
+            var data = obj.data;
+            console.log(obj)
+            if (obj.event === 'check') {
+                layui.$.ajax({
+                    type: 'post'
+                    , url: "/taskCheckOption"
+                    , data: data
+                    , contentType: "application/x-www-form-urlencoded"
+                    , success: function (data) {
+                        console.log(data);
+                        if (data == "success") {
+                            layer.msg('审核通过，操作成功');
+                            obj.del();
+                        } else {
+                            layer.msg('操作失败，请检查网络');
+                        }
+                    }
+
+                })
+            } else if (obj.event === 'wrong') {
+                layui.$.ajax({
+                    type: 'post'
+                    , url: "/taskCheckWrongOption"
+                    , data: data
+                    , contentType: "application/x-www-form-urlencoded"
+                    , success: function (data) {
+                        console.log(data);
+                        if (data == "success") {
+                            layer.msg('操作成功，委托已作废');
+                            obj.del();
+                        } else {
+                            layer.msg('操作失败，请检查网络');
+                        }
+                    }
+
+                })
+            }
+        });
+
+        var $ = layui.$, active = {
+            reload: function () {
+                var demoReload = $('#demoReload');
+
+                //执行重载
+                table.reload('testReload', {
+                    url: '/accountCheckSearchById'
+                    , method: 'post'
+                    , page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                    , where: {
+                        key: {
+                            id: demoReload.val()
+                        }
+                    }
+                }, 'data');
+            }
+        };
+
+        $('#accountSearch').on('click', function () {
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+    });
+</script>
+</body>
+</html>

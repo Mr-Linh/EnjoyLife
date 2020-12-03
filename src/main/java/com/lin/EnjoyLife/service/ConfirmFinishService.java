@@ -15,17 +15,22 @@ public class ConfirmFinishService {
     UserMapper userMapper;
 
     public Boolean ConfirmFinish(String taskId) {
+        Integer integer = 0;
         try {
-            Integer integer = taskMapper.confirmFinishUpdate(taskId);
+            integer = taskMapper.confirmFinishUpdate(taskId);
             Task task = taskMapper.queryForTaskByTaskId(taskId);
             User user = userMapper.queryUserById(task.getExecutor());
             int balance = user.getBalance() + task.getPrice();
-            Integer integer1 = userMapper.updateUserBalance(task.getExecutor(), balance);
-            Integer integer2 = userMapper.updateUserULevel(task.getExecutor(), user.getULevel() + 1);
-            return integer == 1 && integer1==1 && integer2==1;
+            if (task.getCategory1().equals("紧急")) {
+                User user1 = userMapper.queryUserById(task.getPublisher());
+                integer = userMapper.updateUserBalance(task.getPublisher(), user1.getBalance() + 200);
+            }
+            integer = userMapper.updateUserBalance(task.getExecutor(), balance);
+            integer = userMapper.updateUserULevel(task.getExecutor(), user.getULevel() + 1);
+            integer = taskMapper.giveScore(taskId, 4.99);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return false;
+        return integer == 1;
     }
 }

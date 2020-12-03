@@ -42,10 +42,10 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false" th:text="${userName}"><span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <!--                            <li><a href="#">账户信息</a></li>-->
-                            <!--                            <li><a href="#">个人信息</a></li>-->
-                            <!--                            <li><a href="#">账户余额</a></li>-->
-                            <!--                            <li role="separator" class="divider"></li>-->
+                            <li><a href="/accountInfo">账号信息</a></li>
+                            <li><a href="/personalInfo">个人信息</a></li>
+                            <li><a href="/accountBalance">账户余额</a></li>
+                            <li role="separator" class="divider"></li>
                             <li><a href="/logout">退出登录</a></li>
                         </ul>
                     </li>
@@ -72,7 +72,7 @@
                                 <select id="category1" name="category1" lay-filter="category1" lay-verify="required">
                                     <option value="">请选择大分类</option>
                                     <option value="生活">生活</option>
-                                    <option value="学习">学习</option>
+                                    <option value="咨询">咨询</option>
                                     <option value="娱乐">娱乐</option>
                                     <option value="紧急">紧急</option>
                                 </select>
@@ -81,8 +81,8 @@
                                 <select id="category2" name="category2" lay-filter="category2" lay-verify="required">
                                     <option value="">请选择小分类</option>
                                     <option value="家政">家政</option>
-                                    <option value="代领">代领</option>
-                                    <option value="代送">代送</option>
+                                    <option value="代驾">代驾</option>
+                                    <option value="跑腿">跑腿</option>
                                     <option value="其他">其他</option>
                                 </select>
                             </div>
@@ -159,10 +159,26 @@
         if(layui.$("#msg").val()!==""){
             layer.alert(layui.$("#msg").val());
         }
+        function getNowFormatDate() {
+            var date = new Date();
+            var seperator1 = "-";
+            var year = date.getFullYear();
+            var month = date.getMonth() + 1;
+            var strDate = date.getDate();
+            if (month >= 1 && month <= 9) {
+                month = "0" + month;
+            }
+            if (strDate >= 0 && strDate <= 9) {
+                strDate = "0" + strDate;
+            }
+            var currentdate = year + seperator1 + month + seperator1 + strDate;
+            return currentdate;
+        }
 
         //常规用法
         laydate.render({
             elem: '#test1'
+            , min:getNowFormatDate()
         });
         //自定义验证
         form.verify({

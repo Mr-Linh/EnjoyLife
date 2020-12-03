@@ -19,9 +19,10 @@ public class InitAdminController {
     @GetMapping("/initAdmin")
     public String searchCount(Model model){
         PageView pageview= InitAdminService.searchByPid(1);
+        Integer taskTotal = InitAdminService.taskTotal();
         List<User> users = InitAdminService.queryForAllUsers();
         model.addAttribute("userNum",users.size());
-        model.addAttribute("pageview",pageview);
+        model.addAttribute("taskTotal",taskTotal);
         return "initAdmin";
     }
 }

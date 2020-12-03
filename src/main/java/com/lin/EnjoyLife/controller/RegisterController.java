@@ -74,7 +74,7 @@ public class RegisterController {
             user.setQuestion(quiz);
             user.setAnswer(answer);
             user.setUState(2);
-            user.setULevel(1);
+            user.setULevel(0);
             user.setBalance(0);
         } catch (Exception e) {
             e.printStackTrace();

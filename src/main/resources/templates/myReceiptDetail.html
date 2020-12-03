@@ -107,11 +107,18 @@
                                                        th:value="${task.TLevel}">
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="layui-form-item">
                                         <div class="layui-inline">
                                             <label class="layui-form-label">发布时间</label>
                                             <div class="layui-input-inline">
                                                 <input type="text" name="publishTime" class="layui-input"
                                                        disabled="disabled" th:value="${task.publishTime}">
+                                            </div>
+                                            <label class="layui-form-label">委托状态</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="taskState" class="layui-input"
+                                                       disabled="disabled" th:value="${tState}">
                                             </div>
                                         </div>
                                     </div>
@@ -136,8 +143,15 @@
                             <a href="/myReceipt">
                                 <button type="button" class="layui-btn layui-btn-primary">返回</button>
                             </a>
-                            <a th:href="@{'/finishTask?id='+${task.taskId}}" th:if="${task.TState} eq 1"><button type="button" class="layui-btn layui-btn-normal" style="margin-left: 80px">我已完成
-                            </button></a>
+                            <a th:href="@{'/finishTask?id='+${task.taskId}}" th:if="${task.TState} eq 4">
+                                <button type="button" class="layui-btn layui-btn-normal" style="margin-left: 80px">我已完成
+                                </button>
+                            </a>
+                            <a href="#" th:if="${task.TState} eq 7">
+                                <button type="button" class="layui-btn layui-btn-danger" style="margin-left: 80px">
+                                    发布者申诉中
+                                </button>
+                            </a>
                         </div>
                     </div>
                 </div>

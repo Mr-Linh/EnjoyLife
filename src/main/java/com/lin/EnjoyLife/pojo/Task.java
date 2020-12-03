@@ -4,6 +4,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 
 public class Task {
@@ -22,12 +23,13 @@ public class Task {
     private Integer TState;
     private String Executor;
     private String ExecutorPhone;
-    private String Evaluation;
+    private String AppealReason;
+    private BigDecimal Score;
 
     public Task() {
     }
 
-    public Task(String taskId, String category1, String category2, String publisher, String publishTime, Date deadLine, String theme, String content, String special, String TLevel, Integer price, String publisherPhone, Integer TState, String executor, String executorPhone, String evaluation) {
+    public Task(String taskId, String category1, String category2, String publisher, String publishTime, Date deadLine, String theme, String content, String special, String TLevel, Integer price, String publisherPhone, Integer TState, String executor, String executorPhone, String appealReason, BigDecimal score) {
         TaskId = taskId;
         Category1 = category1;
         Category2 = category2;
@@ -43,7 +45,8 @@ public class Task {
         this.TState = TState;
         Executor = executor;
         ExecutorPhone = executorPhone;
-        Evaluation = evaluation;
+        AppealReason = appealReason;
+        Score = score;
     }
 
     public String getTaskId() {
@@ -166,12 +169,20 @@ public class Task {
         ExecutorPhone = executorPhone;
     }
 
-    public String getEvaluation() {
-        return Evaluation;
+    public String getAppealReason() {
+        return AppealReason;
     }
 
-    public void setEvaluation(String evaluation) {
-        Evaluation = evaluation;
+    public void setAppealReason(String appealReason) {
+        AppealReason = appealReason;
+    }
+
+    public BigDecimal getScore() {
+        return Score;
+    }
+
+    public void setScore(BigDecimal score) {
+        Score = score;
     }
 
     @Override
@@ -192,7 +203,8 @@ public class Task {
                 ", TState=" + TState +
                 ", Executor='" + Executor + '\'' +
                 ", ExecutorPhone='" + ExecutorPhone + '\'' +
-                ", Evaluation='" + Evaluation + '\'' +
+                ", AppealReason='" + AppealReason + '\'' +
+                ", Score=" + Score +
                 '}';
     }
 }

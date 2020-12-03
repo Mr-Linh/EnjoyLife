@@ -62,12 +62,12 @@
             <div class="head_div">
                 <div class="cycle_item">
                     <a href="/publishTask" class="github_a" id="github_a">
-                        <span class="github_icon"></span>
+                        <span class="normalTask_icon"></span>
                         <span class="github_text"><p class="item_name">发布委托</p></span>
                     </a>
                     <a href="/taskCenter" class="weibo_a" id="weibo_a">
                         <span class="weibo_icon"></span>
-                        <span class="weibo_text"><p class="item_name">接受委托</p> </span>
+                        <span class="weibo_text"><p class="item_name">委托中心</p> </span>
                     </a>
                     <a href="/accountInfo" class="blog_a" id="blog_a">
                         <span class="blog_icon"></span>
@@ -106,44 +106,47 @@
     </div>
 
     <div class="box">
-        <img class="box_bg" src="img/bg4.png">
+        <img class="box_bg" src="/img/summer1.jpg">
 
-        <div class="box02_content box_content">
+        <div class="box02_content box_content2">
             <div id='bar_container' class="bar_container">
                 <h1>委托发布中心</h1>
                 <div class="media" style="margin-top: 50px">
                     <div class="media-left media-middle">
-                        <a href="#">
-                            <img class="media-object" src="..." alt="...">
+                        <a href="/publishTask">
+                            <span class="normalTask_icon"></span>
+                            <!--                            <img class="media-object" src="/img/icon/publishTask.png" alt="...">-->
                         </a>
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading">普通委托</h4>
-                        <button type="button" class="btn btn-default">生活类</button>
-                        <button type="button" class="btn btn-default">学习类</button>
-                        <button type="button" class="btn btn-default">娱乐类</button>
+                        <a href="/publishTask"><button type="button" class="btn btn-default">生活类</button></a>
+                        <a href="/publishTask"><button type="button" class="btn btn-default">学习类</button></a>
+                        <a href="/publishTask"><button type="button" class="btn btn-default">娱乐类</button></a>
                     </div>
                 </div>
-                <div class="media">
+                <div class="media" style="margin-top: 30px">
                     <div class="media-left media-middle">
-                        <a href="#">
-                            <img class="media-object" src="..." alt="...">
+                        <a href="/publishTask">
+                            <span class="emergencyTask_icon"></span>
+                            <!--                            <img class="media-object" src="..." alt="...">-->
                         </a>
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading">紧急委托</h4>
-                        <button type="button" class="btn btn-default">发布紧急委托</button>
+                        <a href="/publishTask"><button type="button" class="btn btn-default">发布紧急委托</button></a>
                     </div>
                 </div>
-                <div class="media">
+                <div class="media" style="margin-top: 30px">
                     <div class="media-left media-middle">
-                        <a href="#">
-                            <img class="media-object" src="..." alt="...">
+                        <a href="/myPublish">
+                            <span class="myPublish_icon"></span>
+                            <!--                            <img class="media-object" src="..." alt="...">-->
                         </a>
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading">个人历史发布</h4>
-                        <a href="/myPublish"><input type="button" class="btn btn-default" value="历史发布" /></a>
+                        <a href="/myPublish"><input type="button" class="btn btn-default" value="历史发布"/></a>
                     </div>
                 </div>
             </div>
@@ -226,14 +229,14 @@
 
         <img class="box_bg" src="/img/bg6.png">
         <div class="box_content box04_content">
-            <h1 class="box04_title">Something Of Information</h1>
+            <div><h1 style="font-style: oblique;color:#FFFFFF">Something Of Information</h1></div>
             <ul class="hobby_content">
                 <li class="hobby_01">
                     <a href="/accountInfo">
                         <div class="hobby_img_div">
                             <div class="spinner spinner_01"></div>
                             <div class="hobby_img">
-                                <img src="/img/upload/kapok.jpg">
+                                <img src="/img/accountInfo.png">
                             </div>
                             <div class="hobby_img_info">
                                 <h1>账号信息</h1>
@@ -257,7 +260,7 @@
                         <div class="hobby_img_div">
                             <div class="spinner spinner_02"></div>
                             <div class="hobby_img">
-                                <img src="/img/upload/acg.png">
+                                <img src="/img/personalInfo.png">
                             </div>
                             <div class="hobby_img_info">
                                 <h1>个人信息</h1>
@@ -270,7 +273,7 @@
                             <h1>个人信息<a>Personal Information</a></h1>
                         </div>
                         <p class="about_p">
-                            您的身份信息可以才此处查看，若您想要修改个人信息，需要通过系统后台核实才能生效
+                            您的身份信息可以才此处查看，若您的身份信息变更，请及时在此处修改
                         </p>
                         <p>
                         </p>
@@ -281,7 +284,7 @@
                         <div class="hobby_img_div">
                             <div class="spinner spinner_03"></div>
                             <div class="hobby_img">
-                                <!--                                <img src="/img/upload/reading.jpg">-->
+                                <img src="/img/accountBalance.png">
                             </div>
                             <div class="hobby_img_info">
                                 <h1>账户余额</h1>
@@ -313,49 +316,45 @@
         <div class="foot_info_main">
             <ul>
                 <li class="github_items">
-                    <a href="http://blog.yoomeili.cn" target="_blank">GitHub</a>
+                    <a href="https://github.com/" target="_blank">GitHub</a>
                 </li>
                 <li class="google_items">
-                    <a href="http://blog.yoomeili.cn" target="_blank">Google+</a>
+                    <a href="https://github.com/" target="_blank">Google+</a>
 
                 </li>
                 <li class="twitter_items">
-                    <a href="http://blog.yoomeili.cn" target="_blank">Twitter</a>
+                    <a href="https://github.com/" target="_blank">Twitter</a>
 
                 </li>
                 <li class="facebook_items">
-                    <a href="http://blog.yoomeili.cn" target="_blank">FaceBook</a>
+                    <a href="https://github.com/" target="_blank">FaceBook</a>
 
                 </li>
                 <li class="weibo_items">
-                    <a href="http://blog.yoomeili.cn" target="_blank">微博</a>
+                    <a href="https://github.com/" target="_blank">微博</a>
 
                 </li>
                 <li class="zhihu_items">
-                    <a href="http://blog.yoomeili.cn" target="_blank">知乎</a>
+                    <a href="https://github.com/" target="_blank">知乎</a>
 
                 </li>
                 <li class="blog_items">
-                    <a href="http://blog.yoomeili.cn" target="_blank">博客</a>
+                    <a href="https://github.com/" target="_blank">博客</a>
 
                 </li>
                 <li class="email_items">
-                    <a href="mailto:min@coolecho.net" target="_blank">邮箱</a>
+                    <a href="https://github.com/" target="_blank">邮箱</a>
                 </li>
                 <div class="clear"></div>
             </ul>
             <div class="qrcode_div">
                     <span class="weixin">
                         <a class="weixin_icon"></a>
-                        <img class="weixin_img" src="/img/upload/weixin_qr.png">
-                    </span>
-                <span class="dingding">
-                        <a class="dingding_icon"></a>
-                        <img class="dingding_img" src="/img/upload/dingding_qr.png">
+                        <img class="weixin_img" src="/img/qrCode.jpg">
                     </span>
                 <span class="qq">
                         <a class="qq_icon"></a>
-                        <img class="qq_img" src="/img/upload/qq_qr.jpg">
+                        <img class="qq_img" src="/img/qrCode.jpg">
                     </span>
             </div>
         </div>
