@@ -28,15 +28,14 @@
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
                 <a href="javascript:;">
-                    <img src=".." class="layui-nav-img">
+                    <img src="/img/icon/adminphoto.png" class="layui-nav-img">
                     <span th:text="${managerId}"></span>
                 </a>
                 <dl class="layui-nav-child">
-                    <dd><a href="javascript:;">基本资料</a></dd>
-                    <dd><a href="javascript:;">安全设置</a></dd>
+                    <dd><a href="/safeSetting" target="iframeMain">安全设置</a></dd>
+                    <dd><a href="/managerLogout">登出</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="/managerLogout">登出</a></li>
         </ul>
     </div>
 
@@ -45,14 +44,14 @@
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree"  lay-filter="test">
                 <li class="layui-nav-item"><a href="/initAdmin" target="iframeMain">后台首页</a></li>
+<!--                <li class="layui-nav-item layui-nav-itemed">-->
+<!--                    <a class="" href="javascript:;">数据分析</a>-->
+<!--                    <dl class="layui-nav-child">-->
+<!--                        <dd><a href="userActivity" target="iframeMain">用户活跃度</a></dd>-->
+<!--                        <dd><a href="aboutTask" target="iframeMain">委托相关</a></dd>-->
+<!--                    </dl>-->
+<!--                </li>-->
                 <li class="layui-nav-item layui-nav-itemed">
-                    <a class="" href="javascript:;">数据分析</a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="userActivity" target="iframeMain">用户活跃度</a></dd>
-                        <dd><a href="aboutTask" target="iframeMain">委托相关</a></dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item">
                     <a href="javascript:;">委托管理</a>
                     <dl class="layui-nav-child">
                         <dd><a href="/taskCheck" target="iframeMain">审核委托</a></dd>

@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="/layui/css/layui.css" media="all">
     <script src="/layui/layui.js" charset="utf-8"></script>
     <link rel="stylesheet" href="/css/initAdmin.css">
+    <script src="/bootstrap-3.3.7-dist/js/jquery-1.11.1.min.js"></script>
+    <script src="/js/echarts.min.js" charset="UTF-8"></script>
 </head>
 <body>
 <div style="padding: 20px; background-color: #F2F2F2;">
@@ -14,7 +16,7 @@
             <div class="layui-card">
                 <div class="layui-card-header">平台委托总数</div>
                 <div class="layui-card-body">
-                    <span id="pageView" th:text="${taskTotal}"></span>
+                    <span id="taskTotal" th:text="${taskTotal}"></span>
                 </div>
             </div>
         </div>
@@ -26,23 +28,196 @@
                 </div>
             </div>
         </div>
+        <div class="layui-col-md3">
+            <div class="layui-card">
+                <div class="layui-card-header">待审核委托数</div>
+                <div class="layui-card-body">
+                    <span id="accountCheckNum" th:text="${taskToCheck}"></span>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md3">
+            <div class="layui-card">
+                <div class="layui-card-header">待审核账号数</div>
+                <div class="layui-card-body">
+                    <span id="accountToCheck" th:text="${accountToCheck}"></span>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md6">
+            <div class="layui-card">
+                <!--                <div class="layui-card-header">用户注册数</div>-->
+                <div class="layui-card-body">
+                    <div id="taskState">
+                        <div id="taskStateChart" style="width: 100%;height:250px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md6">
+            <div class="layui-card">
+                <!--                <div class="layui-card-header">用户注册数</div>-->
+                <div class="layui-card-body">
+                    <div id="registerNum">
+                        <div id="registerNumChart" style="width: 100%;height:250px;"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
         <div class="layui-col-md12">
             <div class="layui-card">
-                <div class="layui-card-header">用户留言</div>
+                <div class="layui-card-header messageTitle1">用户留言</div>
                 <div class="layui-card-body">
-                    <h3></h3>
-                    <div class="message"></div>
+                    <!--                        暂无留言-->
+                    <div class="layui-row layui-col-space15" id="messageList">
+                        <div class="layui-col-md6">
+                            <div class="layui-card">
+                                <div class="layui-card-header messageTitle">留言1<span
+                                        class="messageTime">2020-12-07</span></div>
+                                <div class="layui-card-body">留言内容</div>
+                            </div>
+                        </div>
+                        <div class="layui-col-md6">
+                            <div class="layui-card">
+                                <div class="layui-card-header">留言2</div>
+                                <div class="layui-card-body">留言内容</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <script>
+    var template = "<div class='layui-col-md6'>" +
+        "<div class='layui-card'>" +
+        "<div class='layui-card-header messageTitle'>[userId]<span class='messageTime'>[messageTime]</span></div>" +
+        "<div class='layui-card-body'>[messageContent]</div>" +
+        "</div></div>";
+    var addressListUrl = "messageContent";
     layui.use(['layedit'], function () {
         var form = layui.form
             , layedit = layui.layedit;
 
+        layui.$.get(addressListUrl, function (result) {
+            if (result.data.length != 0) {
+                // console.log("非空");
+                layui.$("#messageList").empty();
+            }
+            for (var index in result.data) {
+                if (index < 10) {
+                    var addr = result.data[index];
+                    var td = template.replace("[userId]", addr.userId)
+                        .replace("[messageTime]", addr.messageTime)
+                        .replace("[messageContent]", addr.messageContent);
+                    var tdObj = layui.$(td);
+                    layui.$("#messageList").append(tdObj);
+                }
+
+            }
+        });
     });
+</script>
+<script type="text/javascript">
+    var dom = document.getElementById("registerNumChart");
+    var myChart = echarts.init(dom);
+    var app = {};
+    option = null;
+    $.get('registerNumFun', function (data) {
+        var num = data.num;
+        var days = data.days;
+        // console.log(num);
+        // console.log(days);
+        option = {
+            title: {
+                text: '近一周委托发布数'
+            },
+            tooltip: {},
+            legend: {
+                data: ['委托数']
+            },
+            xAxis: {
+                data: days
+            },
+            yAxis: {},
+            series: [{
+                name: '委托数',
+                type: 'bar',
+                data: num
+            }]
+        };
+
+        // myChart.setOption({
+        //     xAxis: {
+        //         data: data.weekDays
+        //     },
+        //     series: [{
+        //         // 根据名字对应到相应的系列
+        //         name: '注册数',
+        //         data: data.num
+        //     }]
+        // });
+        myChart.setOption(option);
+    });
+</script>
+<script type="text/javascript">
+    var dom2 = document.getElementById("taskStateChart");
+    var myChart2 = echarts.init(dom2);
+
+    $.get('taskCategoriesFun', function (data) {
+        // var datajson=$.parseJSON(data);
+        // myChart.setOption({
+        //     series : [
+        //         {
+        //             name: '访问来源',
+        //             type: 'pie',    // 设置图表类型为饼图
+        //             radius: '55%',  // 饼图的半径，外半径为可视区尺寸（容器高宽中较小一项）的 55% 长度。
+        //             data:data.taskCategories
+        //         }
+        //     ]
+        // })
+
+        option2 = {
+            title: {
+                text: '委托各类别占比',
+                subtext: '仅供参考',
+                left: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: '{a} <br/>{b} : {c} ({d}%)'
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['生活类别', '咨询类别', '娱乐类别', '紧急委托']
+            },
+
+            series: [
+                {
+                    name: '委托数量',
+                    type: 'pie',
+                    radius: '65%',
+                    center: ['50%', '60%'],
+                    data: data.taskCategories
+                    ,
+                    emphasis: {
+                        itemStyle: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+
+        myChart2.setOption(option2);
+    }, 'json');
+
+
 </script>
 </body>
 </html>

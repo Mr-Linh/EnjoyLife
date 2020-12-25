@@ -120,9 +120,15 @@
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading">普通委托</h4>
-                        <a href="/publishTask"><button type="button" class="btn btn-default">生活类</button></a>
-                        <a href="/publishTask"><button type="button" class="btn btn-default">学习类</button></a>
-                        <a href="/publishTask"><button type="button" class="btn btn-default">娱乐类</button></a>
+                        <a href="/publishTask">
+                            <button type="button" class="btn btn-default">生活类</button>
+                        </a>
+                        <a href="/publishTask">
+                            <button type="button" class="btn btn-default">学习类</button>
+                        </a>
+                        <a href="/publishTask">
+                            <button type="button" class="btn btn-default">娱乐类</button>
+                        </a>
                     </div>
                 </div>
                 <div class="media" style="margin-top: 30px">
@@ -134,7 +140,9 @@
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading">紧急委托</h4>
-                        <a href="/publishTask"><button type="button" class="btn btn-default">发布紧急委托</button></a>
+                        <a href="/publishTask">
+                            <button type="button" class="btn btn-default">发布紧急委托</button>
+                        </a>
                     </div>
                 </div>
                 <div class="media" style="margin-top: 30px">
@@ -155,7 +163,7 @@
                 <div class="overline"></div>
                 <p>请保证您的个人信息真实有效</p>
                 <p>委托信息保证真实有效</p>
-                <p>请为您的委填写合适的主题</p>
+                <p>请为您的委托填写合适的主题</p>
                 <p>请为您的委托选择合适的类别</p>
                 <p>请为您的委托选择合适的截止时间</p>
                 <p>合理的报酬有利于您的委托被接受</p>
@@ -177,36 +185,36 @@
 
         <div class="box_content box03_content">
             <ul id="timeUl" class="timeUl">
+<!--                <li>-->
+<!--                    <div>-->
+<!--                        <h1>委托1主题：</h1>-->
+<!--                        <p>委托编号：</p>-->
+<!--                        <p>截止时间：</p>-->
+<!--                        <p>发布者：</p>-->
+<!--                        <p>委托状态：</p>-->
+<!--                    </div>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                    <div>-->
+<!--                        <h1>委托2主题：</h1>-->
+<!--                        <p>委托编号：</p>-->
+<!--                        <p>截止时间：</p>-->
+<!--                        <p>发布者：</p>-->
+<!--                        <p>委托状态：</p>-->
+<!--                    </div>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                    <div>-->
+<!--                        <h1>委托3主题：</h1>-->
+<!--                        <p>委托编号：</p>-->
+<!--                        <p>截止时间：</p>-->
+<!--                        <p>发布者：</p>-->
+<!--                        <p>委托状态：</p>-->
+<!--                    </div>-->
+<!--                </li>-->
                 <li>
                     <div>
-                        <h1>委托1主题：</h1>
-                        <p>委托编号：</p>
-                        <p>截止时间：</p>
-                        <p>发布者：</p>
-                        <p>委托状态：</p>
-                    </div>
-                </li>
-                <li>
-                    <div>
-                        <h1>委托2主题：</h1>
-                        <p>委托编号：</p>
-                        <p>截止时间：</p>
-                        <p>发布者：</p>
-                        <p>委托状态：</p>
-                    </div>
-                </li>
-                <li>
-                    <div>
-                        <h1>委托3主题：</h1>
-                        <p>委托编号：</p>
-                        <p>截止时间：</p>
-                        <p>发布者：</p>
-                        <p>委托状态：</p>
-                    </div>
-                </li>
-                <li>
-                    <div>
-                        <h1>查看更多</h1>
+                        <h1>暂无接受的进行中委托</h1>
                         <p>...</p>
                     </div>
                 </li>
@@ -249,7 +257,7 @@
                             <h1>账号信息<a>Account Information</a></h1>
                         </div>
                         <p class="about_p">
-                            您的账号相关信息都可以在此处更改，包括昵称、密码、密保问题
+                            您可以在此处查看账号相关信息，若您想要更改用户名、密码，请点击这里
                         </p>
                         <p>
                         </p>
@@ -320,7 +328,6 @@
                 </li>
                 <li class="google_items">
                     <a href="https://github.com/" target="_blank">Google+</a>
-
                 </li>
                 <li class="twitter_items">
                     <a href="https://github.com/" target="_blank">Twitter</a>
@@ -340,7 +347,6 @@
                 </li>
                 <li class="blog_items">
                     <a href="https://github.com/" target="_blank">博客</a>
-
                 </li>
                 <li class="email_items">
                     <a href="https://github.com/" target="_blank">邮箱</a>
@@ -360,15 +366,54 @@
         </div>
         <div class="foot_power">
             <h3>©2020 EnjoyLife</h3>
+            <a href="/userMessage">留言</a>
         </div>
+        <input id="msg" type="hidden" th:value="${msg}"/>
     </foot>
 </div>
 <script type="text/javascript" src="js/main.js"></script>
 <script>
+
+    var template = "<li><a href='/myReceiptDetail'><div>" +
+        "<h3>委托主题：[theme]</h3>" +
+        "<p>委托编号：[taskId]</p>" +
+        "<p>类别：[category]</p>" +
+        "<p>委托薪酬：[price]</p>" +
+        "</div></a></li>";
+    var template2 = "<li><a href='/myReceipt'><div>" +
+        "<h3>查看更多</h3>" +
+        "<p>...</p>" +
+        "</div></a></li>";
+    var addressListUrl = "/myReceiptListGoing";
+
     layui.use(['form', 'layedit', 'laydate'], function () {
         var form = layui.form
             , layer = layui.layer;
 
+        if (layui.$("#msg").val() !== "") {
+            layer.alert(layui.$("#msg").val());
+        }
+
+        layui.$.get(addressListUrl, function (result) {
+            if (result.data.length != 0) {
+                layui.$("#timeUl").empty();
+            }
+            var deadline;
+            for (var index in result.data) {
+                if (index < 3) {
+                    var addr = result.data[index];
+                    console.log(deadline);
+                    var td = template.replace("[theme]", addr.theme)
+                        .replace("[taskId]", addr.taskId)
+                        .replace("[category]", addr.category1 + " " + addr.category2)
+                        .replace("[price]", addr.price)
+                        .replace("/myReceiptDetail", "/myReceiptDetail?id=" + addr.taskId);
+                    var tdObj = layui.$(td);
+                    layui.$("#timeUl").append(tdObj);
+                }
+            }
+            layui.$("#timeUl").append(template2);
+        });
 
         //监听提交
         form.on('submit(demo1)', function (data) {

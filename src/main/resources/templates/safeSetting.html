@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>安全设置</title>
+    <!--layui-->
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+    <script src="/layui/layui.js" charset="utf-8"></script>
+</head>
+<body>
+<div class="layui-row" style="padding-top: 20px;padding-left: 20px;padding-right: 20px;">
+<!--    <div><h2>安全设置</h2></div>-->
+    <div class="content" style="display: flex;width: 700px;margin: auto;">
+        <input id="msg" type="hidden" th:value="${msg}"/>
+        <form class="layui-form" action="/safeSettingConfig" method="post">
+            <div class="layui-card-header">安全设置</div>
+            <div class="layui-card-body">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">管理员id</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="id" th:value="${manager.managerId}" disabled="disabled"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">账号拥有者</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="owner" th:value="${manager.owner}" disabled="disabled"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">密码</label>
+                    <div class="layui-input-inline">
+                        <input type="password" name="oldPassword" lay-verify="required|pass" placeholder="请输入密码"
+                               autocomplete="off"
+                               class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">请填写6到12位密码</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">新密码</label>
+                    <div class="layui-input-inline">
+                        <input type="password" name="password" lay-verify="required|pass" placeholder="请输入密码"
+                               autocomplete="off"
+                               class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">请填写6到12位密码</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">确认密码</label>
+                    <div class="layui-input-inline">
+                        <input type="password" name="confirmPassword" lay-verify="required|confirmPass"
+                               placeholder="请再次输入密码" autocomplete="off"
+                               class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">两次输入的密码必须一致</div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1" id="submit">确认更改</button>
+                        <a href="/safeSetting" ><input type="button"
+                                                       class="layui-btn layui-btn-primary" value="重置"/></a>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+<script>
+    layui.use(['form', 'layedit', 'laydate'], function () {
+        var form = layui.form
+            , layer = layui.layer
+            , layedit = layui.layedit
+            , laydate = layui.laydate;
+
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+        laydate.render({
+            elem: '#date1'
+        });
+        if(layui.$("#msg").val()!==""){
+            layer.alert(layui.$("#msg").val());
+        }
+
+        //自定义验证规则
+        form.verify({
+            title: function (value) {
+                if (value.length < 5) {
+                    return '标题至少得5个字符啊';
+                }
+            }
+            , pass: [
+                /^[\S]{6,12}$/
+                , '密码必须6到12位，且不能出现空格'
+            ]
+            , content: function (value) {
+                layedit.sync(editIndex);
+            }
+            , confirmPass: function (value) {
+                if (layui.$("input[name=password]").val() !== value)
+                    return '两次密码输入不一致！';
+            }
+            , realName: [
+                /^[\u4e00-\u9fa5]{2,4}$/
+                , '真实姓名2-4位汉字'
+            ]
+            , check: function () {
+                var checked = document.getElementById("realInfo");
+                if (checked.checked == false) {
+                    {
+                        return "请勾选协议";
+                    }
+                }
+            }
+        });
+
+        //监听提交
+        form.on('submit(demo1)', function (data) {
+            if (layui.$("input[name=identityNumber]").checked()) {
+                // layer.alert(JSON.stringify("感谢使用EnjoyLife!"), {
+                //     title: data.username
+                // })
+            }
+            return false;
+        });
+
+    });
+</script>
+</body>
+</html>

@@ -114,4 +114,7 @@ public interface TaskMapper {
 
     @Update("update task set Score=#{Score} where TaskId=#{TaskId}")
     Integer giveScore(@Param("TaskId") String TaskId, @Param("Score") double Score);
+
+    @Select("select count(*) from task where Category1=#{Category1}")
+    Integer selectCategory1(@Param("Category1") String Category1);
 }

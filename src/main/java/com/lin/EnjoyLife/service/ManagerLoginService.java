@@ -2,7 +2,6 @@ package com.lin.EnjoyLife.service;
 
 import com.lin.EnjoyLife.mapper.ManagerMapper;
 import com.lin.EnjoyLife.pojo.Manager;
-import com.lin.EnjoyLife.pojo.PageView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

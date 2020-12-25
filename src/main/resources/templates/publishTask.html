@@ -34,7 +34,7 @@
                 <ul class="nav navbar-nav"></ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <div class="head_img_div"><img class="head_img" src="/img/icon/qq.png" alt="头像显示错误">
+                        <div class="head_img_div"><img class="head_img" src="/img/icon/photo.png" alt="头像显示错误">
                         </div>
                     </li>
                     <li class="dropdown">
@@ -104,7 +104,7 @@
                             <div class="layui-inline">
                                 <label class="layui-form-label" style="width: 100px">截止时间</label>
                                 <div class="layui-input-inline">
-                                    <input type="text" name="deadline" class="layui-input" id="test1" placeholder="yyyy-MM-dd">
+                                    <input type="text" name="deadline" lay-verify="required" class="layui-input" id="test1" placeholder="yyyy-MM-dd">
                                 </div>
                             </div>
                         </div>
@@ -119,13 +119,13 @@
                         <div class="layui-form-item">
                             <label class="layui-form-label" style="width: 100px">主题</label>
                             <div class="layui-input-block">
-                                <input type="text" name="title" lay-verify="title" autocomplete="off" class="layui-input">
+                                <input type="text" name="title" lay-verify="required|title" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-form-item layui-form-text">
                             <label class="layui-form-label" style="width: 100px">详细内容</label>
                             <div class="layui-input-block">
-                                <textarea placeholder="请详细说明委托内容" class="layui-textarea" name="content"></textarea>
+                                <textarea placeholder="请详细说明委托内容" class="layui-textarea" name="content" lay-verify="required"></textarea>
                             </div>
                         </div>
                         <div class="layui-form-item layui-form-text">

@@ -87,7 +87,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">身份证号</label>
                         <div class="layui-input-block">
-                            <input type="text" name="identity" lay-verify="identity" placeholder="" autocomplete="off"
+                            <input type="text" name="identity" lay-verify="required|identity" placeholder="" autocomplete="off"
                                    class="layui-input">
                         </div>
                     </div>
@@ -123,7 +123,7 @@
                         <div class="layui-inline">
                             <label class="layui-form-label">密保问题</label>
                             <div class="layui-input-inline">
-                                <select name="quiz">
+                                <select name="quiz" lay-verify="required">
                                     <option value="">请选择问题</option>
                                     <optgroup label="城市记忆">
                                         <option value="你工作的第一个城市">你工作的第一个城市</option>
@@ -139,7 +139,7 @@
                     <div class="layui-form-item layui-form-text">
                         <label class="layui-form-label">填写回答</label>
                         <div class="layui-input-block">
-                            <textarea  name="answer" placeholder="请输入内容" class="layui-textarea"></textarea>
+                            <textarea  name="answer" lay-verify="required" placeholder="请输入内容" class="layui-textarea"></textarea>
                         </div>
                     </div>
                     <div class="layui-form-item">

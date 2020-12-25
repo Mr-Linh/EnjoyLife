@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户留言</title>
+    <!--layui-->
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+    <script src="/layui/layui.js" charset="utf-8"></script>
+
+    <!--bootstrap-->
+    <link rel="stylesheet" href="/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script src="/bootstrap-3.3.7-dist/js/jquery-1.11.1.min.js"></script>
+    <script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/personalCenter.css">
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/index">EnjoyLife</a>
+                <a class="navbar-brand" href="#">用户留言</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav"></ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <div class="head_img_div"><img class="head_img" src="/img/icon/qq.png" alt="头像显示错误">
+                        </div>
+                    </li>
+                    <li class="dropdown">
+
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false" th:text="${userName}"><span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <!--                            <li><a href="#">账户信息</a></li>-->
+                            <!--                            <li><a href="#">个人信息</a></li>-->
+                            <!--                            <li><a href="#">账户余额</a></li>-->
+                            <!--                            <li role="separator" class="divider"></li>-->
+                            <li><a href="/logout">退出登录</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+    <div class="main-content" style="display: flex">
+        <!--        <input id="msg" type="hidden" th:value="${msg}"/>-->
+        <!--        <div class="content">-->
+        <form class="layui-form" action="/addMessage" method="post">
+            <div class="main-content" style=" background-color: #FFFFFd;">
+                <div class="page-header" style="text-align: center">
+                    <h1>用户留言</h1>
+                </div>
+                <div class="layui-row layui-col-space12"
+                     style="padding-left: 100px;padding-right: 100px;padding-top: 20px">
+                    <div class="layui-col-md12">
+                        <div class="layui-card">
+                            <div class="layui-card-header"></div>
+                            <div class="layui-card-body">
+                                <div class="layui-form-item layui-form-text">
+                                    <h3 class="layui-form-label" style="width: 300px">留下想对开发者说的话</h3>
+
+                                </div>
+                                <div class="layui-form-item layui-form-text">
+                                    <div class="layui-input-block">
+                                        <textarea type="text" id="message" name="message"
+                                                  style="min-width: 800px;min-height: 200px"></textarea>
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <div class="layui-input-block" style="float:right;">
+                                        <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+                                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+        <!--        </div>-->
+    </div>
+</div>
+
+</body>
+</html>

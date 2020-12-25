@@ -1,6 +1,20 @@
-h1{
+h1 {
     text-align: center;
 }
-#pageView,#activeUser{
+
+#taskTotal, #activeUser, #accountCheckNum, #accountToCheck {
     font-size: xx-large;
+}
+
+.messageTitle1 {
+    font-size: x-large;
+}
+
+.messageTitle {
+    font-size: large;
+}
+
+.messageTime {
+    font-size: xx-small;
+    margin-left: 30px;
 }
